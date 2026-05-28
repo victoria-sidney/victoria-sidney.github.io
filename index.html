@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>ВІТА | Співачка Нової Ери</title>
     <style>
-        body { margin: 0; background: #000; color: #fff; font-family: sans-serif; text-align: center; }
+        body { margin: 0; background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; }
+        
+        /* Головний екран */
         .hero { 
             height: 100vh; 
             display: flex; 
@@ -16,8 +18,11 @@
         .text-box { background: rgba(0,0,0,0.4); padding: 40px; border: 2px solid #fff; }
         h1 { font-size: 7rem; margin: 0; letter-spacing: 20px; text-transform: uppercase; }
         p { font-size: 1.5rem; letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; }
-        .gallery { padding: 50px; display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
-        img { width: 100%; border: 1px solid #333; }
+        
+        /* Секція з фото (початкова структура) */
+        .section { padding: 100px 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: auto; }
+        img { width: 100%; height: auto; }
     </style>
 </head>
 <body>
@@ -26,6 +31,8 @@
             <h1>ВІТА</h1>
             <p>Співачка Нової Ери</p>
         </div>
+    </div>
+    
     <div class="section">
         <h2>Фото-Всесвіт</h2>
         <div class="grid">
