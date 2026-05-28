@@ -4,47 +4,31 @@
     <meta charset="UTF-8">
     <title>ВІТА | Співачка Нової Ери</title>
     <style>
-    body { margin: 0; background-color: #000; color: #fff; font-family: 'Arial Black', Gadget, sans-serif; text-align: center; }
-    
-    .hero { 
-        height: 100vh; 
-        display: flex; 
-        flex-direction: column; 
-        justify-content: center; 
-        align-items: center; 
-        background: url('ц.jpg') no-repeat center top/cover; 
-    }
-    
-    h1 { 
-        font-size: 8rem !important; /* Робимо величезним */
-        text-transform: uppercase; 
-        margin: 0; 
-        text-shadow: 5px 5px 20px rgba(0,0,0,1); /* Дуже чітка тінь */
-        letter-spacing: 15px;
-    }
-    
-    p { 
-        font-size: 2rem; 
-        letter-spacing: 10px; 
-        text-transform: uppercase;
-        margin-top: 20px;
-        background: rgba(0,0,0,0.5); /* Підкладка під текст для читабельності */
-        padding: 10px;
-    }
-</style>
+        body { margin: 0; background: #000; color: #fff; font-family: sans-serif; text-align: center; }
+        .hero { 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            background: url('ц.jpg') no-repeat center top/cover; 
+        }
+        .text-box { background: rgba(0,0,0,0.4); padding: 40px; border: 2px solid #fff; }
+        h1 { font-size: 7rem; margin: 0; letter-spacing: 20px; text-transform: uppercase; }
+        p { font-size: 1.5rem; letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; }
+        .gallery { padding: 50px; display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
+        img { width: 100%; border: 1px solid #333; }
+    </style>
 </head>
 <body>
     <div class="hero">
-        <h1>ВІТА</h1>
-        <p>Співачка Нової Ери</p>
-    </div>
-    
-    <div class="section">
-        <h2>Фото-Всесвіт</h2>
-        <div class="grid">
-            <img src="Whisk_0a2d93a942c31f6915f4df5dd574cc4bdr.png" alt="Віта">
-            <img src="2 (11).jpg" alt="Віта">
+        <div class="text-box">
+            <h1>ВІТА</h1>
+            <p>Співачка Нової Ери</p>
         </div>
+    </div>
+    <div class="gallery">
+        <img src="Whisk_0a2d93a942c31f6915f4df5dd574cc4bdr.png" alt="Віта">
     </div>
 </body>
 </html>
