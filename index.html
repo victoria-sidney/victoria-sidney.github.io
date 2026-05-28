@@ -4,15 +4,38 @@
     <meta charset="UTF-8">
     <title>ВІТА | Співачка Нової Ери</title>
     <style>
-        body { margin: 0; background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; }
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: url('ц.jpg') no-repeat center top/contain; }
-        h1 { font-size: 4rem; letter-spacing: 5px; text-transform: uppercase; margin: 0; }
-        .section { padding: 100px 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: auto; }
-        .card { border: 1px solid #333; padding: 10px; transition: 0.3s; }
-        .card:hover { border-color: #ff6600; }
-        img { width: 100%; height: auto; }
-    </style>
+        body { margin: 0; background-color: #000; color: #fff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: center; }
+    
+    .hero { 
+        height: 100vh; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        background: url('ц.jpg') no-repeat center top/cover; 
+        text-shadow: 3px 3px 10px rgba(0,0,0,0.8); /* додаємо тінь для об'єму */
+    }
+    
+    h1 { 
+        font-size: 5rem; 
+        letter-spacing: 8px; 
+        text-transform: uppercase; 
+        margin: 0; 
+        font-weight: 800; /* робимо шрифт жирнішим */
+    }
+    
+    p { 
+        font-size: 1.5rem; 
+        letter-spacing: 3px; 
+        opacity: 0.9; 
+        margin-top: 10px;
+    }
+
+    .section { padding: 80px 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: auto; }
+    img { width: 100%; height: auto; border-radius: 8px; transition: transform 0.3s; }
+    img:hover { transform: scale(1.03); }
+</style>
 </head>
 <body>
     <div class="hero">
