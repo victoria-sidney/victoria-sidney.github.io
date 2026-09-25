@@ -1,34 +1,97 @@
-<!DOCTYPE html>
-<html lang="uk">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>ВІТА | Співачка Нової Ери</title>
-    <style>
-        body { margin: 0; background: #000; color: #fff; font-family: sans-serif; text-align: center; }
-        .hero { 
-            height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            background: url('ц.jpg') no-repeat center top/cover; 
-        }
-        .text-box { background: rgba(0,0,0,0.4); padding: 40px; border: 2px solid #fff; }
-        h1 { font-size: 7rem; margin: 0; letter-spacing: 20px; text-transform: uppercase; }
-        p { font-size: 1.5rem; letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; }
-        .gallery { padding: 50px; display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
-        img { width: 100%; border: 1px solid #333; }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Victoria Sidney — books, comics and worlds made to be entered, not only read.">
+<meta name="theme-color" content="#09090c">
+<title>Victoria Sidney — Enter the Story</title>
+<style>
+:root{--bg:#09090c;--panel:#121217;--ivory:#f3efe8;--ink:#17171b;--silver:#c8c9cf;--burg:#681b2a;--serif:Georgia,"Times New Roman",serif;--sans:Arial,Helvetica,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:#fff;font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit}img,video{display:block;width:100%}
+header{position:fixed;z-index:50;inset:0 0 auto;height:68px;padding:0 clamp(16px,4vw,58px);display:flex;align-items:center;justify-content:space-between;background:linear-gradient(#09090ce8,transparent);transition:.3s}
+header.scrolled{background:#09090ce8;backdrop-filter:blur(13px);border-bottom:1px solid #ffffff12}
+.brand{font-family:var(--serif);letter-spacing:.15em;text-decoration:none;font-size:14px}.nav{display:flex;align-items:center;gap:28px}.nav a{text-decoration:none;text-transform:uppercase;font-size:11px;letter-spacing:.16em;color:#ddd}.lang{border:1px solid #ffffff55;background:#0003;color:#fff;border-radius:99px;padding:9px 11px;cursor:pointer}
+.hero{min-height:100svh;position:relative;display:flex;align-items:flex-end;background:linear-gradient(90deg,#0b0b10cc,#0b0b101e 56%,#0b0b1088),url("assets/hero.jpg") center/cover no-repeat}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#000c,transparent 55%,#0005)}
+.hero-copy{position:relative;z-index:2;padding:0 clamp(20px,7vw,105px) clamp(65px,9vh,105px);max-width:1020px}
+.kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;margin:0 0 14px;color:var(--silver)}
+h1,h2,h3{font-family:var(--serif);font-weight:400}.hero h1{font-size:clamp(64px,10vw,148px);line-height:.78;letter-spacing:-.045em;margin:0}.tag{font-family:var(--serif);font-size:clamp(20px,2.4vw,34px);letter-spacing:.28em;margin:28px 0;text-transform:uppercase}
+.btn{display:inline-block;border:1px solid currentColor;padding:12px 18px;text-decoration:none;text-transform:uppercase;letter-spacing:.14em;font-size:11px}
+section{padding:clamp(75px,10vw,145px) clamp(18px,5vw,72px)}.ivory{background:var(--ivory);color:var(--ink)}.dark{background:#0d0d11}.burg{background:#4b111b}
+.intro{max-width:940px;margin:auto;text-align:center}.intro p:last-child{font-family:var(--serif);font-size:clamp(34px,5vw,68px);line-height:1.02;margin:0}
+.section-head{max-width:780px;margin:0 0 52px}.section-head h2,.about h2{font-size:clamp(42px,6vw,82px);line-height:.95;margin:5px 0 12px}.section-head>p:last-child{color:#aaa;line-height:1.65}
+.book-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 18px}.book{min-width:0}.cover{aspect-ratio:2/3;background:linear-gradient(145deg,#202028,#101014);overflow:hidden;box-shadow:0 16px 40px #0005;position:relative}.cover:before{content:"VICTORIA SIDNEY";position:absolute;inset:auto 14px 14px;color:#ffffff20;font-family:var(--serif);letter-spacing:.1em;font-size:11px}.cover img{height:100%;object-fit:cover;position:relative;z-index:1}.book small{display:block;color:#9fa0a7;letter-spacing:.14em;font-size:9px;margin:12px 0 7px}.book h3{font-size:21px;line-height:1.1;margin:0 0 10px}.book a,.muted{font-size:10px;text-transform:uppercase;letter-spacing:.12em}.muted{color:#777}
+.world-wrap{position:relative;min-height:min(78vw,760px);overflow:hidden;background:#16161b;border:1px solid #ffffff16}.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .65s}.slide.active{opacity:1;visibility:visible}.slide video{height:100%;object-fit:cover;background:#16161b}.slide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#000d,#0002 60%),linear-gradient(0deg,#000a,transparent 55%)}.world-copy{position:absolute;z-index:2;left:clamp(20px,6vw,90px);bottom:clamp(70px,9vw,110px);max-width:650px}.world-copy h3{font-size:clamp(50px,7vw,100px);line-height:.88;margin:4px 0 12px}.world-copy p{max-width:540px;color:#ddd;line-height:1.5}.dots{position:absolute;z-index:5;left:clamp(20px,6vw,90px);right:clamp(20px,6vw,90px);bottom:24px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.dot{height:22px;border:0;background:transparent;padding:10px 0;cursor:pointer;position:relative}.dot:before{content:"";display:block;height:2px;background:#ffffff35}.dot span{position:absolute;left:0;top:10px;height:2px;width:0;background:#fff}.dot.active span{animation:progress 6s linear forwards}@keyframes progress{to{width:100%}}
+.about{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(35px,7vw,100px);align-items:center;max-width:1400px;margin:auto}.about-photo{min-height:520px;background:#d8d2c9;overflow:hidden}.about-photo img{min-height:520px;height:100%;object-fit:cover}.about p{line-height:1.75}.about blockquote{font-family:var(--serif);font-size:clamp(25px,3vw,38px);border-left:2px solid var(--burg);margin:28px 0 0;padding-left:18px}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px}.yt{aspect-ratio:16/9;background:#1b1b21}.yt iframe{width:100%;height:100%;border:0}.youtube-card h3{font-size:20px;margin:12px 0 0}.watchmore{margin-top:36px}
+footer{padding:44px clamp(18px,5vw,72px);display:grid;grid-template-columns:1fr auto;gap:22px;background:#070709;border-top:1px solid #ffffff12}.links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:18px}.links a{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#bbb;text-decoration:none}.copy{grid-column:1/-1;color:#666;font-size:10px}
+.reveal{opacity:0;transform:translateY(16px);transition:.75s}.reveal.show{opacity:1;transform:none}
+@media(max-width:1000px){.nav a{display:none}.book-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:720px){header{height:60px}.hero{min-height:92svh;background-position:46% center}.hero-copy{padding:0 20px 58px}.hero h1{font-size:clamp(58px,19vw,88px)}.tag{font-size:16px;letter-spacing:.2em}section{padding:75px 16px}.book-grid{grid-template-columns:repeat(2,1fr);gap:24px 10px}.book h3{font-size:16px}.world-wrap{min-height:72svh}.world-copy{left:20px;right:20px}.about{grid-template-columns:1fr}.about-photo,.about-photo img{min-height:420px}.video-grid{grid-template-columns:1fr}footer{grid-template-columns:1fr}.links{justify-content:flex-start}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
 </head>
 <body>
-    <div class="hero">
-        <div class="text-box">
-            <h1>ВІТА</h1>
-            <p>Співачка Нової Ери</p>
-        </div>
-    </div>
-    <div class="gallery">
-        <img src="Whisk_0a2d93a942c31f6915f4df5dd574cc4bdr.png" alt="Віта">
-    </div>
-</body>
-</html>
+<header id="head">
+  <a class="brand" href="#top">VICTORIA SIDNEY</a>
+  <nav class="nav"><a href="#books" data-t="books">Books</a><a href="#worlds" data-t="worlds">Worlds</a><a href="#about" data-t="about">About</a><a href="#watch" data-t="watch">Watch</a><button class="lang" id="lang">UA</button></nav>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-copy reveal">
+    <p class="kicker" data-t="heroK">AUTHOR • WORLDS • STORIES</p>
+    <h1>VICTORIA<br>SIDNEY</h1>
+    <p class="tag" data-t="tag">ENTER THE STORY</p>
+    <a class="btn" href="#books" data-t="enter">Enter the worlds</a>
+  </div>
+</section>
+
+<section class="ivory"><div class="intro reveal"><p class="kicker" data-t="doorK">A BOOK IS A DOOR</p><p data-t="door">Victoria Sidney’s books are an invitation not simply to read a story, but to step inside and take the leading role.</p></div></section>
+
+<section class="dark" id="books">
+  <div class="section-head reveal"><p class="kicker" data-t="sel">SELECTED BOOKS</p><h2 data-t="choose">Choose a door.</h2><p data-t="bookIntro">A first selection from Victoria Sidney’s catalogue. More titles will be added as the library grows.</p></div>
+  <div class="book-grid">
+    <article class="book reveal"><div class="cover"><img src="assets/covers/unicorn.jpg" alt="Лялечка Єдинорога в Картинній Галереї" loading="lazy" onerror="this.style.display='none'"></div><small>DETECTIVE COMIC · UA</small><h3>Лялечка Єдинорога в Картинній Галереї</h3><a href="https://www.amazon.com/dp/B0HG7G9V36" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article><article class="book reveal"><div class="cover"><img src="assets/covers/skywater.jpg" alt="Планета Скайвотер" loading="lazy" onerror="this.style.display='none'"></div><small>SCIENCE FICTION · UA</small><h3>Планета Скайвотер</h3><a href="https://www.amazon.com/dp/B0HGFF97QY" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article><article class="book reveal"><div class="cover"><img src="assets/covers/rabbit-robin.jpg" alt="Кролик та Робін" loading="lazy" onerror="this.style.display='none'"></div><small>DARK COMIC · UA</small><h3>Кролик та Робін</h3><span class="muted" data-t="soon">Link coming soon</span></article><article class="book reveal"><div class="cover"><img src="assets/covers/titanium-edenberg.jpg" alt="Titanium Heart A12 — Edenberg Colony" loading="lazy" onerror="this.style.display='none'"></div><small>SCI-FI · EN</small><h3>Titanium Heart A12 — Edenberg Colony</h3><span class="muted" data-t="soon">Link coming soon</span></article><article class="book reveal"><div class="cover"><img src="assets/covers/project-frost.jpg" alt="Titanium Heart — Project Frost, Vol. 2" loading="lazy" onerror="this.style.display='none'"></div><small>SCI-FI · EN</small><h3>Titanium Heart — Project Frost, Vol. 2</h3><span class="muted" data-t="soon">Link coming soon</span></article><article class="book reveal"><div class="cover"><img src="assets/covers/vampire.jpg" alt="Я Вампір: Трилогія" loading="lazy" onerror="this.style.display='none'"></div><small>VAMPIRE ROMANCE · UA</small><h3>Я Вампір: Трилогія</h3><a href="https://www.amazon.com/dp/B0DFC36HVN" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article><article class="book reveal"><div class="cover"><img src="assets/covers/dark-embrace.jpg" alt="В обіймах темряви" loading="lazy" onerror="this.style.display='none'"></div><small>VAMPIRE ROMANCE · UA</small><h3>В обіймах темряви</h3><span class="muted" data-t="soon">Link coming soon</span></article><article class="book reveal"><div class="cover"><img src="assets/covers/summer.jpg" alt="Don’t Run Away, Summer..." loading="lazy" onerror="this.style.display='none'"></div><small>ROMANCE · EN</small><h3>Don’t Run Away, Summer...</h3><a href="https://www.amazon.com/dp/B0BV9TWTCJ" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article><article class="book reveal"><div class="cover"><img src="assets/covers/gifted-christmas.jpg" alt="Gifted Christmas & Chocolate Wish" loading="lazy" onerror="this.style.display='none'"></div><small>CHRISTMAS STORY · EN</small><h3>Gifted Christmas & Chocolate Wish</h3><a href="https://www.amazon.com/dp/B0CNS85YHK" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article><article class="book reveal"><div class="cover"><img src="assets/covers/rainy-princess.jpg" alt="Rainy Princess" loading="lazy" onerror="this.style.display='none'"></div><small>FAIRY TALE · EN</small><h3>Rainy Princess</h3><span class="muted" data-t="soon">Link coming soon</span></article><article class="book reveal"><div class="cover"><img src="assets/covers/traveling-book.jpg" alt="Книга, яка мандрує сама" loading="lazy" onerror="this.style.display='none'"></div><small>NOVEL · UA</small><h3>Книга, яка мандрує сама</h3><span class="muted" data-t="soon">Link coming soon</span></article>
+  </div>
+</section>
+
+<section class="dark" id="worlds">
+  <div class="section-head reveal"><p class="kicker" data-t="worldK">ENTER THE WORLDS</p><h2 data-t="worldTitle">Five doors. Five moving worlds.</h2><p data-t="worldIntro">Short cinematic fragments from Victoria Sidney’s stories.</p></div>
+  <div class="world-wrap" id="slider">
+    <article class="slide active" data-i="0"><video muted playsinline preload="metadata" poster="assets/covers/unicorn.jpg"><source src="assets/videos/unicorn.mp4" type="video/mp4"></video><div class="world-copy"><p class="kicker">01</p><h3>Лялечка Єдинорога</h3><p data-t="w1"></p></div></article><article class="slide " data-i="1"><video muted playsinline preload="metadata" poster="assets/covers/rabbit-robin.jpg"><source src="assets/videos/rabbit-robin.mp4" type="video/mp4"></video><div class="world-copy"><p class="kicker">02</p><h3>Кролик та Робін</h3><p data-t="w2"></p></div></article><article class="slide " data-i="2"><video muted playsinline preload="metadata" poster="assets/covers/skywater.jpg"><source src="assets/videos/skywater.mp4" type="video/mp4"></video><div class="world-copy"><p class="kicker">03</p><h3>Планета Скайвотер</h3><p data-t="w3"></p></div></article><article class="slide " data-i="3"><video muted playsinline preload="metadata" poster="assets/covers/project-frost.jpg"><source src="assets/videos/project-frost.mp4" type="video/mp4"></video><div class="world-copy"><p class="kicker">04</p><h3>Titanium Heart</h3><p data-t="w4"></p></div></article><article class="slide " data-i="4"><video muted playsinline preload="metadata" poster="assets/covers/vampire.jpg"><source src="assets/videos/vampire.mp4" type="video/mp4"></video><div class="world-copy"><p class="kicker">05</p><h3>Я Вампір</h3><p data-t="w5"></p></div></article>
+    <div class="dots"><button class="dot active" data-i="0" aria-label="Slide 1"><span></span></button><button class="dot " data-i="1" aria-label="Slide 2"><span></span></button><button class="dot " data-i="2" aria-label="Slide 3"><span></span></button><button class="dot " data-i="3" aria-label="Slide 4"><span></span></button><button class="dot " data-i="4" aria-label="Slide 5"><span></span></button></div>
+  </div>
+</section>
+
+<section class="ivory" id="about"><div class="about">
+  <div class="about-photo reveal"><img src="assets/about.jpg" alt="Victoria Sidney" loading="lazy" onerror="this.style.display='none'"></div>
+  <div class="reveal"><p class="kicker" data-t="aboutK">ABOUT THE AUTHOR</p><h2>Victoria Sidney</h2><p data-t="a1"></p><p data-t="a2"></p><p data-t="a3"></p><blockquote data-t="quote"></blockquote></div>
+</div></section>
+
+<section class="dark" id="watch">
+  <div class="section-head reveal"><p class="kicker" data-t="watchK">WATCH & LISTEN</p><h2 data-t="watchT">Stories beyond the page.</h2><p data-t="watchI">Selected trailers and soundtracks already released on Victoria Sidney’s YouTube channel.</p></div>
+  <div class="video-grid">
+    <article class="youtube-card reveal"><div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/LcRfhmwWc4c" title="Victoria Sidney video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><h3 data-t="yt1"></h3></article><article class="youtube-card reveal"><div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/cZTy0uAchSs" title="Victoria Sidney video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><h3 data-t="yt2"></h3></article><article class="youtube-card reveal"><div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/I2RzVxgMbNc" title="Victoria Sidney video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><h3 data-t="yt3"></h3></article><article class="youtube-card reveal"><div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/u-Gzyfk0eYs?start=33" title="Victoria Sidney video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><h3 data-t="yt4"></h3></article>
+  </div>
+  <div class="watchmore reveal"><a class="btn" href="https://www.youtube.com/@writer.victoria.sidney" target="_blank" rel="noopener" data-t="youtube">Visit YouTube ↗</a></div>
+</section>
+
+<section class="burg"><div class="intro reveal"><p class="kicker" data-t="tag">ENTER THE STORY</p><p data-t="close">Some stories live longer.</p></div></section>
+</main>
+
+<footer><div class="brand">VICTORIA SIDNEY</div><div class="links"><a href="https://www.instagram.com/victoria.sidney.writer/" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/@writer.victoria.sidney" target="_blank" rel="noopener">YouTube</a><a href="https://www.facebook.com/victoria.sidney.writer/" target="_blank" rel="noopener">Facebook</a><a href="https://www.amazon.com/author/victoriasidney" target="_blank" rel="noopener">Amazon Author</a></div><div class="copy">© <span id="year"></span> Victoria Sidney</div></footer>
+
+<script>
+const T={
+en:{books:"Books",worlds:"Worlds",about:"About",watch:"Watch",heroK:"AUTHOR • WORLDS • STORIES",tag:"ENTER THE STORY",enter:"Enter the worlds",doorK:"A BOOK IS A DOOR",door:"Victoria Sidney’s books are an invitation not simply to read a story, but to step inside and take the leading role.",sel:"SELECTED BOOKS",choose:"Choose a door.",bookIntro:"A first selection from Victoria Sidney’s catalogue. More titles will be added as the library grows.",amazon:"View on Amazon ↗",soon:"Link coming soon",worldK:"ENTER THE WORLDS",worldTitle:"Five doors. Five moving worlds.",worldIntro:"Short cinematic fragments from Victoria Sidney’s stories.",w1:"A palace gallery, a vanished painting, and a mystery hidden in 1873.",w2:"A dark comic world where one missed class opens fifteen impossible rooms.",w3:"A distant planet, a white horizon, and a journey that changes everything.",w4:"Machines learn. People adapt. Some bonds outlast both.",w5:"Moonlit streets, old promises, and a love story that refuses to stay buried.",aboutK:"ABOUT THE AUTHOR",a1:"Victoria creates worlds through the senses: scents, sounds, colors, tastes, nature, music, and the smallest details that linger in memory.",a2:"She does not confine herself to one genre. Science fiction, mysteries, novels, fairy tales, comics and nonfiction each find the form they need.",a3:"Her comics are art objects as much as stories — places where characters, spaces, clothing, light, color and composition all matter.",quote:"“The leading role is already waiting for you.”",watchK:"WATCH & LISTEN",watchT:"Stories beyond the page.",watchI:"Selected trailers and soundtracks already released on Victoria Sidney’s YouTube channel.",yt1:"Vampire world",yt2:"Titanium Heart — prototype comic",yt3:"Don’t Run Away, Summer — soundtrack",yt4:"Planet Skywater — official trailer",youtube:"Visit YouTube ↗",close:"Some stories live longer."},
+uk:{books:"Книги",worlds:"Світи",about:"Про авторку",watch:"Дивитися",heroK:"АВТОРКА • СВІТИ • ІСТОРІЇ",tag:"УВІЙДИ В ІСТОРІЮ",enter:"Увійти у світи",doorK:"КНИГА — ЦЕ ДВЕРІ",door:"Книги Вікторії Сідней — це запрошення не просто прочитати історію, а увійти всередину й зіграти в ній головну роль.",sel:"ОБРАНІ КНИГИ",choose:"Обери двері.",bookIntro:"Перша добірка з каталогу Вікторії Сідней. Бібліотека на сайті поступово зростатиме.",amazon:"Дивитися на Amazon ↗",soon:"Посилання незабаром",worldK:"УВІЙДИ У СВІТИ",worldTitle:"П’ять дверей. П’ять живих світів.",worldIntro:"Короткі кінематографічні фрагменти з історій Вікторії Сідней.",w1:"Палацова галерея, зникла картина й таємниця, захована у 1873 році.",w2:"Темний комікс-світ, де одне пропущене заняття відкриває п’ятнадцять неможливих кімнат.",w3:"Далека планета, білий горизонт і подорож, після якої все змінюється.",w4:"Машини вчаться. Люди пристосовуються. Деякі зв’язки переживають і тих, і інших.",w5:"Місячні вулиці, давні обіцянки й історія кохання, яка відмовляється залишатися похованою.",aboutK:"ПРО АВТОРКУ",a1:"Вікторія створює світи через відчуття: запахи, звуки, кольори, смаки, природу, музику й найменші деталі, що залишаються в пам’яті.",a2:"Вона не обмежує себе одним жанром. Наукова фантастика, детективи, романи, казки, комікси й нонфікшн — кожна ідея знаходить власну форму.",a3:"Її комікси — це не лише історії, а й арт-об’єкти, де мають значення персонажі, простір, одяг, світло, колір і композиція.",quote:"«Головна роль уже чекає на тебе.»",watchK:"ДИВИТИСЯ Й СЛУХАТИ",watchT:"Історії поза сторінкою.",watchI:"Добірка трейлерів і саундтреків, які вже вийшли на YouTube-каналі Victoria Sidney.",yt1:"Вампірський світ",yt2:"Titanium Heart — прототип коміксу",yt3:"Не втікай, літо — саундтрек",yt4:"Планета Скайвотер — офіційний трейлер",youtube:"Перейти на YouTube ↗",close:"Деякі історії живуть довше."}};
+let lang=localStorage.getItem("vs-lang")||"en";const b=document.getElementById("lang");
+function setLang(l){lang=l;document.documentElement.lang=l==="uk"?"uk":"en";document.querySelectorAll("[data-t]").forEach(e=>{const k=e.dataset.t;if(T[l][k])e.textContent=T[l][k]});b.textContent=l==="en"?"UA":"EN";localStorage.setItem("vs-lang",l)}b.onclick=()=>setLang(lang==="en"?"uk":"en");setLang(lang);
+const head=document.getElementById("head");addEventListener("scroll",()=>head.classList.toggle("scrolled",scrollY>24),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("show");io.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll(".reveal").forEach(e=>io.observe(e));
+const slides=[...document.querySelectorAll(".slide")],dots=[...document.querySelectorAll(".dot")];let cur=0,timer;
+function show(i){cur=(i+slides.length)%slides.length;slides.forEach((s,n)=>{s.classList.toggle("active",n===cur);const v=s.querySelector("video");if(n===cur){v.currentTime=0;v.play().catch(()=>{})}else v.pause()});dots.forEach((d,n)=>{d.classList.remove("active");if(n===cur){void d.offsetWidth;d.classList.add("active")}});clearInterval(timer);timer=setInterval(()=>show(cur+1),6000)}
+dots.forEach(d=>d.onclick=()=>show(+d.dataset.i));show(0);document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+</body></html>
