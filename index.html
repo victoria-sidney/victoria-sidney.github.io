@@ -37,6 +37,23 @@ section{padding:clamp(75px,10vw,145px) clamp(18px,5vw,72px)}.ivory{background:va
 @media(max-width:1000px){.nav a{display:none}.book-grid{grid-template-columns:repeat(3,1fr)}.social-mini{left:31%;gap:24px}.social-mini a{width:36px;height:36px}}
 @media(max-width:720px){header{height:72px}.social-mini{top:38px;left:16px;gap:7px}.social-mini a{width:26px;height:26px}.social-mini svg{width:12px;height:12px}.hero{min-height:92svh;background-position:43% center}.hero:after{background:linear-gradient(0deg,rgba(0,0,0,.76),transparent 58%,rgba(0,0,0,.18))}.hero-copy{left:20px;right:20px;bottom:52px;text-align:center}.hero h1{font-size:clamp(54px,16vw,82px);line-height:.83}.hero .tag{font-size:15px;letter-spacing:.18em}.book-grid{grid-template-columns:repeat(2,1fr);gap:24px 10px}.book h3{font-size:16px}.world-wrap{min-height:72svh}.world-copy{left:20px;right:20px}.world-copy h3{font-size:clamp(38px,12vw,58px)}.about{grid-template-columns:1fr}.about-photo,.about-photo img{min-height:420px}.video-grid{grid-template-columns:1fr}footer{grid-template-columns:1fr}.links{justify-content:flex-start}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+
+/* Collection shortcuts on the existing hero. */
+.hero-copy{bottom:max(16%,124px)}
+.hero-collections{position:absolute;z-index:3;left:19.4%;right:11.3%;bottom:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,15vw,300px)}
+.collection-button{min-width:0;min-height:72px;padding:10px 12px;border:1px solid #fff;background:rgba(12,10,12,.72);backdrop-filter:blur(5px);color:#fff;font-family:var(--sans);text-align:center;cursor:pointer;box-shadow:0 0 0 1px #ffffff35}
+.collection-button span{display:block;font-size:clamp(19px,2.6vw,42px);line-height:1.15;text-transform:uppercase;font-weight:400}
+.collection-button small{display:block;margin-top:5px;font-size:clamp(10px,1vw,14px);line-height:1.2;text-transform:uppercase}
+.collection-button:hover{background:rgba(40,27,31,.9)}
+.collection-button:focus-visible{outline:3px solid #fff;outline-offset:4px}
+@media(max-width:720px){
+  .hero{min-height:max(92svh,680px)}
+  .hero-copy{bottom:176px}
+  .hero-collections{left:18px;right:18px;bottom:16px;grid-template-columns:1fr;gap:10px}
+  .collection-button{min-height:62px;padding:9px 12px}
+  .collection-button span{font-size:22px}
+  .collection-button small{font-size:10px}
+}
 </style>
 </head>
 <body>
@@ -60,12 +77,16 @@ section{padding:clamp(75px,10vw,145px) clamp(18px,5vw,72px)}.ivory{background:va
     <p class="tag" data-t="tag">ENTER THE STORY</p>
     <a class="btn" href="#books" data-t="enter">Enter the worlds</a>
   </div>
+  <div class="hero-collections">
+    <button class="collection-button" type="button" data-collection-lang="uk" aria-controls="books" aria-pressed="false"><span data-t="ukBooks">Ukrainian books</span><small data-t="openCollection">Open collection</small></button>
+    <button class="collection-button" type="button" data-collection-lang="en" aria-controls="books" aria-pressed="true"><span data-t="enBooks">English books</span><small data-t="openCollection">Open collection</small></button>
+  </div>
 </section>
 
 <section class="ivory"><div class="intro reveal"><p class="kicker" data-t="doorK">A BOOK IS A DOOR</p><p data-t="door">Victoria Sidney’s books are an invitation not simply to read a story, but to step inside and take the leading role.</p></div></section>
 
 <section class="dark" id="books">
-  <div class="section-head reveal"><p class="kicker" data-t="sel">CHOOSE YOUR BOOK IN ENGLISH</p><h2 data-t="choose">Choose a door.</h2><p data-t="bookIntro">A first selection from Victoria Sidney’s catalogue. More titles will be added as the library grows.</p></div>
+  <div class="section-head reveal"><p class="kicker" data-t="sel">CHOOSE YOUR BOOK IN ENGLISH</p><h2 data-t="choose">Choose your reality.</h2><p data-t="bookIntro">A first selection from Victoria Sidney’s catalogue. More titles will be added as the library grows.</p></div>
   <div class="book-grid">
     <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/unicorn.jpg" alt="Лялечка Єдинорога в картинній галереї" loading="lazy"></div><small>DETECTIVE COMIC · UA</small><h3>Лялечка Єдинорога в картинній галереї</h3><a href="https://www.amazon.com/dp/B0HG7G9V36" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
     <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/skywater.jpg" alt="Планета Скайвотер" loading="lazy"></div><small>SCIENCE FICTION · UA</small><h3>Планета Скайвотер</h3><a href="https://www.amazon.com/dp/B0HGFF97QY" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
@@ -83,7 +104,7 @@ section{padding:clamp(75px,10vw,145px) clamp(18px,5vw,72px)}.ivory{background:va
 </section>
 
 <section class="dark" id="worlds">
-  <div class="section-head reveal"><p class="kicker" data-t="worldK">ENTER THE WORLDS</p><h2 data-t="worldTitle">Choose your door.</h2><p data-t="worldIntro">Short cinematic fragments from Victoria Sidney’s stories.</p></div>
+  <div class="section-head reveal"><p class="kicker" data-t="worldK">ENTER THE WORLDS</p><h2 data-t="worldTitle">Open your door.</h2><p data-t="worldIntro">Short cinematic fragments from Victoria Sidney’s stories.</p></div>
   <div class="world-wrap" id="slider">
     <article class="slide active" data-i="0"><video muted playsinline preload="metadata" poster="assets/covers/unicorn.jpg"><source src="assets/videos/unicorn.mp4" type="video/mp4"></video><div class="world-copy"><p class="kicker">01</p><h3>Лялечка Єдинорога в картинній галереї</h3><p data-t="w1"></p></div></article>
     <article class="slide" data-i="1"><video muted playsinline preload="metadata" poster="assets/covers/rabbit-robin.jpg"><source src="assets/videos/rabbit-robin.mp4" type="video/mp4"></video><div class="world-copy"><p class="kicker">02</p><h3>Кролик та Робін</h3><p data-t="w2"></p></div></article>
@@ -118,15 +139,15 @@ section{padding:clamp(75px,10vw,145px) clamp(18px,5vw,72px)}.ivory{background:va
   <div class="watchmore reveal"><a class="btn" href="https://www.youtube.com/@writer.victoria.sidney" target="_blank" rel="noopener" data-t="youtube">Visit YouTube ↗</a></div>
 </section>
 
-<section class="final-quote" aria-labelledby="closing-title"><img src="assets/final-quote.jpg?v=2" alt="Victoria Sidney — books, burgundy petals, ink and a cup of coffee" loading="lazy" width="2048" height="1143"><h2 id="closing-title" data-t="close">Enter the story.</h2></section>
+<section class="final-quote" aria-labelledby="closing-title"><h2 id="closing-title" data-t="close">Enter the story.</h2><img src="assets/final-quote.jpg?v=2" alt="Victoria Sidney — books, burgundy petals, ink and a cup of coffee" loading="lazy" width="2048" height="1143"></section>
 </main>
 
 <footer><div class="brand" data-t="brand">VICTORIA SIDNEY</div><div class="links"><a href="https://www.instagram.com/victoria.sidney.writer/" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/@writer.victoria.sidney" target="_blank" rel="noopener">YouTube</a><a href="https://www.facebook.com/victoria.sidney.writer/" target="_blank" rel="noopener">Facebook</a><a href="https://www.amazon.com/author/victoriasidney" target="_blank" rel="noopener">Amazon Author</a></div><div class="copy">© <span id="year"></span> <span data-t="authorName">Victoria Sidney</span></div></footer>
 
 <script>
 const T={
-en:{brand:"VICTORIA SIDNEY",firstName:"VICTORIA",lastName:"SIDNEY",authorName:"Victoria Sidney",books:"Books",worlds:"Worlds",about:"About the Author",watch:"Watch",tag:"ENTER THE STORY",enter:"Enter the worlds",doorK:"A BOOK IS A DOOR",door:"Victoria Sidney’s books are an invitation not simply to read a story, but to step inside and take the leading role.",sel:"CHOOSE YOUR BOOK IN ENGLISH",choose:"Choose a door.",bookIntro:"A first selection from Victoria Sidney’s catalogue. More titles will be added as the library grows.",amazon:"View on Amazon ↗",soon:"Link coming soon",worldK:"ENTER THE WORLDS",worldTitle:"Choose your door.",worldIntro:"Short cinematic fragments from Victoria Sidney’s stories.",w1:"A palace gallery, a vanished painting, and a mystery hidden in 1873.",w2:"A dark comic world where one missed class opens fifteen impossible rooms.",w3:"A distant planet, a white horizon, and a journey that changes everything.",w4:"Machines learn. People adapt. Some bonds outlast both.",w5:"Moonlit streets, old promises, and a love story that refuses to stay buried.",w6:"A city burns beneath the twilight, where the battle for light has already begun.",aboutK:"ABOUT THE AUTHOR",a1:"Victoria creates worlds through the senses: scents, sounds, colors, tastes, nature, music, and the smallest details that linger in memory.",a2:"She does not confine herself to one genre. Science fiction, mysteries, novels, fairy tales, comics and nonfiction each find the form they need.",a3:"Her comics are art objects as much as stories — places where characters, spaces, clothing, light, color and composition all matter.",quote:"“The leading role is already waiting for you.”",watchK:"WATCH & LISTEN",watchT:"Stories beyond the page.",watchI:"Selected trailers and soundtracks already released on Victoria Sidney’s YouTube channel.",yt1:"Vampire world",yt2:"Titanium Heart — prototype comic",yt3:"Don’t Run Away, Summer — soundtrack",yt4:"Planet Skywater — official trailer",youtube:"Visit YouTube ↗",close:"Enter the story."},
-uk:{brand:"ВІКТОРІЯ СІДНЕЙ",firstName:"ВІКТОРІЯ",lastName:"СІДНЕЙ",authorName:"Вікторія Сідней",books:"Книги",worlds:"Світи",about:"Про авторку",watch:"Дивитися",tag:"УВІЙДИ В ІСТОРІЮ",enter:"Увійти у світи",doorK:"КНИГА — ЦЕ ДВЕРІ",door:"Книги Вікторії Сідней — це запрошення не просто прочитати історію, а увійти всередину й зіграти в ній головну роль.",sel:"ОБЕРИ СВОЮ КНИГУ УКРАЇНСЬКОЮ",choose:"Обери двері.",bookIntro:"Перша добірка з каталогу Вікторії Сідней. Бібліотека на сайті поступово зростатиме.",amazon:"Дивитися на Amazon ↗",soon:"Посилання незабаром",worldK:"УВІЙДИ У СВІТИ",worldTitle:"Обери свої двері.",worldIntro:"Короткі кінематографічні фрагменти з історій Вікторії Сідней.",w1:"Палацова галерея, зникла картина й таємниця, захована у 1873 році.",w2:"Темний комікс-світ, де одне пропущене заняття відкриває п’ятнадцять неможливих кімнат.",w3:"Далека планета, білий горизонт і подорож, після якої все змінюється.",w4:"Машини вчаться. Люди пристосовуються. Деякі зв’язки переживають і тих, і інших.",w5:"Місячні вулиці, давні обіцянки й історія кохання, яка відмовляється залишатися похованою.",w6:"Місто палає під сутінками — битва за світло вже почалася.",aboutK:"ПРО АВТОРКУ",a1:"Вікторія створює світи через відчуття: запахи, звуки, кольори, смаки, природу, музику й найменші деталі, що залишаються в пам’яті.",a2:"Вона не обмежує себе одним жанром. Наукова фантастика, детективи, романи, казки, комікси й нонфікшн — кожна ідея знаходить власну форму.",a3:"Її комікси — це не лише історії, а й арт-об’єкти, де мають значення персонажі, простір, одяг, світло, колір і композиція.",quote:"«Головна роль уже чекає на тебе.»",watchK:"ДИВИТИСЯ Й СЛУХАТИ",watchT:"Історії поза сторінкою.",watchI:"Добірка трейлерів і саундтреків, які вже вийшли на YouTube-каналі Victoria Sidney.",yt1:"Вампірський світ",yt2:"Titanium Heart — прототип коміксу",yt3:"Не втікай, літо — саундтрек",yt4:"Планета Скайвотер — офіційний трейлер",youtube:"Перейти на YouTube ↗",close:"Увійди в історію."}};
+en:{ukBooks:"Ukrainian books",enBooks:"English books",openCollection:"Open collection",brand:"VICTORIA SIDNEY",firstName:"VICTORIA",lastName:"SIDNEY",authorName:"Victoria Sidney",books:"Books",worlds:"Worlds",about:"About the Author",watch:"Watch",tag:"ENTER THE STORY",enter:"Enter the worlds",doorK:"A BOOK IS A DOOR",door:"Victoria Sidney’s books are an invitation not simply to read a story, but to step inside and take the leading role.",sel:"CHOOSE YOUR BOOK IN ENGLISH",choose:"Choose your reality.",bookIntro:"A first selection from Victoria Sidney’s catalogue. More titles will be added as the library grows.",amazon:"View on Amazon ↗",soon:"Link coming soon",worldK:"ENTER THE WORLDS",worldTitle:"Open your door.",worldIntro:"Short cinematic fragments from Victoria Sidney’s stories.",w1:"A palace gallery, a vanished painting, and a mystery hidden in 1873.",w2:"A dark comic world where one missed class opens fifteen impossible rooms.",w3:"A distant planet, a white horizon, and a journey that changes everything.",w4:"Machines learn. People adapt. Some bonds outlast both.",w5:"Moonlit streets, old promises, and a love story that refuses to stay buried.",w6:"A city burns beneath the twilight, where the battle for light has already begun.",aboutK:"ABOUT THE AUTHOR",a1:"Victoria creates worlds through the senses: scents, sounds, colors, tastes, nature, music, and the smallest details that linger in memory.",a2:"She does not confine herself to one genre. Science fiction, mysteries, novels, fairy tales, comics and nonfiction each find the form they need.",a3:"Her comics are art objects as much as stories — places where characters, spaces, clothing, light, color and composition all matter.",quote:"“The leading role is already waiting for you.”",watchK:"WATCH & LISTEN",watchT:"Stories beyond the page.",watchI:"Selected trailers and soundtracks already released on Victoria Sidney’s YouTube channel.",yt1:"Vampire world",yt2:"Titanium Heart — prototype comic",yt3:"Don’t Run Away, Summer — soundtrack",yt4:"Planet Skywater — official trailer",youtube:"Visit YouTube ↗",close:"Enter the story."},
+uk:{ukBooks:"Українські книги",enBooks:"Англійські книги",openCollection:"Відкрити колекцію",brand:"ВІКТОРІЯ СІДНЕЙ",firstName:"ВІКТОРІЯ",lastName:"СІДНЕЙ",authorName:"Вікторія Сідней",books:"Книги",worlds:"Світи",about:"Про авторку",watch:"Дивитися",tag:"УВІЙДИ В ІСТОРІЮ",enter:"Увійти у світи",doorK:"КНИГА — ЦЕ ДВЕРІ",door:"Книги Вікторії Сідней — це запрошення не просто прочитати історію, а увійти всередину й зіграти в ній головну роль.",sel:"ОБЕРИ СВОЮ КНИГУ УКРАЇНСЬКОЮ",choose:"Обери реальність.",bookIntro:"Перша добірка з каталогу Вікторії Сідней. Бібліотека на сайті поступово зростатиме.",amazon:"Дивитися на Amazon ↗",soon:"Посилання незабаром",worldK:"УВІЙДИ У СВІТИ",worldTitle:"Відчини свої двері.",worldIntro:"Короткі кінематографічні фрагменти з історій Вікторії Сідней.",w1:"Палацова галерея, зникла картина й таємниця, захована у 1873 році.",w2:"Темний комікс-світ, де одне пропущене заняття відкриває п’ятнадцять неможливих кімнат.",w3:"Далека планета, білий горизонт і подорож, після якої все змінюється.",w4:"Машини вчаться. Люди пристосовуються. Деякі зв’язки переживають і тих, і інших.",w5:"Місячні вулиці, давні обіцянки й історія кохання, яка відмовляється залишатися похованою.",w6:"Місто палає під сутінками — битва за світло вже почалася.",aboutK:"ПРО АВТОРКУ",a1:"Вікторія створює світи через відчуття: запахи, звуки, кольори, смаки, природу, музику й найменші деталі, що залишаються в пам’яті.",a2:"Вона не обмежує себе одним жанром. Наукова фантастика, детективи, романи, казки, комікси й нонфікшн — кожна ідея знаходить власну форму.",a3:"Її комікси — це не лише історії, а й арт-об’єкти, де мають значення персонажі, простір, одяг, світло, колір і композиція.",quote:"«Головна роль уже чекає на тебе.»",watchK:"ДИВИТИСЯ Й СЛУХАТИ",watchT:"Історії поза сторінкою.",watchI:"Добірка трейлерів і саундтреків, які вже вийшли на YouTube-каналі Victoria Sidney.",yt1:"Вампірський світ",yt2:"Titanium Heart — прототип коміксу",yt3:"Не втікай, літо — саундтрек",yt4:"Планета Скайвотер — офіційний трейлер",youtube:"Перейти на YouTube ↗",close:"Увійди в історію."}};
 
 let lang=localStorage.getItem("vs-lang")||"en";
 const b=document.getElementById("lang");
@@ -135,6 +156,7 @@ function setLang(l){
   document.documentElement.lang=l==="uk"?"uk":"en";
   document.querySelectorAll("[data-t]").forEach(e=>{const k=e.dataset.t;if(T[l][k])e.textContent=T[l][k]});
   document.querySelectorAll("[data-book-lang]").forEach(e=>{e.hidden=e.dataset.bookLang!==l});
+  document.querySelectorAll("[data-collection-lang]").forEach(e=>e.setAttribute("aria-pressed",String(e.dataset.collectionLang===l)));
   b.textContent=l==="en"?"EN":"UA";
   b.title=l==="en"?"Перемкнути на українську":"Switch to English";
   b.setAttribute("aria-label",b.title);
@@ -142,6 +164,12 @@ function setLang(l){
 }
 b.onclick=()=>setLang(lang==="en"?"uk":"en");
 setLang(lang);
+document.querySelectorAll("[data-collection-lang]").forEach(button=>{
+  button.addEventListener("click",()=>{
+    setLang(button.dataset.collectionLang);
+    document.getElementById("books").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth",block:"start"});
+  });
+});
 
 const head=document.getElementById("head");
 addEventListener("scroll",()=>head.classList.toggle("scrolled",scrollY>24),{passive:true});
