@@ -40,20 +40,36 @@ section{padding:clamp(75px,10vw,145px) clamp(18px,5vw,72px)}.ivory{background:va
 
 /* Collection shortcuts on the existing hero. */
 .hero-copy{bottom:max(16%,124px)}
-.hero-collections{position:absolute;z-index:3;left:19.4%;right:11.3%;bottom:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,15vw,300px)}
-.collection-button{min-width:0;min-height:72px;padding:10px 12px;border:1px solid #fff;background:rgba(12,10,12,.72);backdrop-filter:blur(5px);color:#fff;font-family:var(--sans);text-align:center;cursor:pointer;box-shadow:0 0 0 1px #ffffff35}
-.collection-button span{display:block;font-size:clamp(19px,2.6vw,42px);line-height:1.15;text-transform:uppercase;font-weight:400}
-.collection-button small{display:block;margin-top:5px;font-size:clamp(10px,1vw,14px);line-height:1.2;text-transform:uppercase}
+.hero-collections{position:absolute;z-index:3;left:20%;right:12%;bottom:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,13vw,230px)}
+.collection-button{min-width:0;width:100%;max-width:255px;justify-self:center;min-height:50px;padding:7px 12px;border:1px solid rgba(255,255,255,.9);background:rgba(12,10,12,.56);backdrop-filter:blur(6px);color:#fff;font-family:var(--sans);text-align:center;cursor:pointer;box-shadow:0 0 0 1px #ffffff1d;transition:.2s}
+.collection-button span{display:block;font-size:clamp(16px,1.45vw,22px);line-height:1.12;text-transform:uppercase;font-weight:400;letter-spacing:.02em}
+.collection-button small{display:block;margin-top:4px;font-size:9px;line-height:1.2;text-transform:uppercase;letter-spacing:.13em}
 .collection-button:hover{background:rgba(40,27,31,.9)}
 .collection-button:focus-visible{outline:3px solid #fff;outline-offset:4px}
 @media(max-width:720px){
   .hero{min-height:max(92svh,680px)}
   .hero-copy{bottom:176px}
   .hero-collections{left:18px;right:18px;bottom:16px;grid-template-columns:1fr;gap:10px}
-  .collection-button{min-height:62px;padding:9px 12px}
-  .collection-button span{font-size:22px}
+  .collection-button{min-height:46px;padding:6px 11px;max-width:250px}
+  .collection-button span{font-size:17px}
   .collection-button small{font-size:10px}
 }
+
+/* Scoped additions for the author pages and new editions. */
+.about .author-headline{font-size:clamp(32px,3.5vw,52px);line-height:1.08}
+.author-links{display:grid;gap:7px;margin-top:30px}
+.author-links a{display:grid;grid-template-columns:68px minmax(170px,1.25fr) minmax(150px,.9fr) 42px;align-items:center;min-height:74px;border:1px solid #17171b24;background:#fff6;text-decoration:none;color:var(--ink);transition:.2s}
+.author-links a:hover{border-color:#681b2a75;background:#fff}
+.author-links a:focus-visible{outline:2px solid var(--burg);outline-offset:3px}
+.author-links .author-num{font-family:var(--display);font-size:36px;line-height:1;color:#c9beb2;text-align:center}
+.author-links .author-title{font-family:var(--display);font-size:23px;line-height:1.02;padding:11px 14px;border-left:1px solid #681b2a8c}
+.author-links .author-desc{font-family:var(--serif);font-size:12px;line-height:1.35;color:#625b59;padding:10px 12px}
+.author-links .author-arrow{width:30px;height:30px;border:1px solid #681b2a8c;border-radius:50%;display:grid;place-items:center;color:var(--burg);font-size:17px}
+@media(max-width:760px){.author-links a{grid-template-columns:52px 1fr 38px;min-height:66px}.author-links .author-num{font-size:30px}.author-links .author-title{font-size:20px}.author-links .author-desc{display:none}.author-links .author-arrow{width:28px;height:28px}}
+
+.book .edition-note{font-size:12px;line-height:1.5;color:#d9dae0;margin:0 0 12px}
+.book .cover-pending{display:grid;place-items:center;aspect-ratio:2/3;padding:22px;text-align:center;font-family:var(--display);font-size:26px;background:#161419;border:1px solid #ffffff22}
+@media(max-width:480px){.about .author-headline{font-size:34px}}
 </style>
 </head>
 <body>
@@ -90,14 +106,19 @@ section{padding:clamp(75px,10vw,145px) clamp(18px,5vw,72px)}.ivory{background:va
   <div class="book-grid">
     <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/unicorn.jpg" alt="Лялечка Єдинорога в картинній галереї" loading="lazy"></div><small>DETECTIVE COMIC · UA</small><h3>Лялечка Єдинорога в картинній галереї</h3><a href="https://www.amazon.com/dp/B0HG7G9V36" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
     <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/skywater.jpg" alt="Планета Скайвотер" loading="lazy"></div><small>SCIENCE FICTION · UA</small><h3>Планета Скайвотер</h3><a href="https://www.amazon.com/dp/B0HGFF97QY" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
+    <article class="book reveal" data-book-lang="en"><div class="cover"><img src="assets/covers/skywater.jpg" alt="Planet Skywater" loading="lazy"></div><small>SCIENCE FICTION · EN</small><h3>Planet Skywater</h3><span class="muted" data-t="soon">Link coming soon</span></article>
     <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/rabbit-robin.jpg" alt="Кролик та Робін" loading="lazy"></div><small>DARK COMIC · UA</small><h3>Кролик та Робін</h3><span class="muted" data-t="soon">Link coming soon</span></article>
     <article class="book reveal" data-book-lang="en"><div class="cover"><img src="assets/covers/titanium-edenberg.jpg" alt="Titanium Heart A12 — Edenberg Colony, 2034, A12 vol 1" loading="lazy"></div><small>SCI-FI · EN</small><h3>Titanium Heart A12 — Edenberg Colony, 2034, A12 vol 1</h3><span class="muted" data-t="soon">Link coming soon</span></article>
     <article class="book reveal" data-book-lang="en"><div class="cover"><img src="assets/covers/project-frost.jpg" alt="Titanium Heart — Project Frost, 2116, Vi Vol. 2" loading="lazy"></div><small>SCI-FI · EN</small><h3>Titanium Heart — Project Frost, 2116, Vi Vol. 2</h3><span class="muted" data-t="soon">Link coming soon</span></article>
-    <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/vampire.jpg" alt="Я Вампір: Трилогія" loading="lazy"></div><small>VAMPIRE ROMANCE · UA</small><h3>Я Вампір: Трилогія</h3><a href="https://www.amazon.com/dp/B0DFC36HVN" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
-    <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/dark-embrace.jpg" alt="В Обіймах Темряви: Я Вампір" loading="lazy"></div><small>VAMPIRE ROMANCE · UA</small><h3>В Обіймах Темряви: Я Вампір</h3><a href="https://www.amazon.com/dp/B0DFBX4FD6" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
+    <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/vampire.jpg" alt="Я Вампір: Трилогія" loading="lazy"></div><small>VAMPIRE ROMANCE · UA</small><h3>Я Вампір: Трилогія</h3><p class="edition-note" data-t="trilogyVolume">The trilogy in one volume</p><a href="https://www.amazon.com/dp/B0DFC36HVN" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
+    <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/dark-embrace.jpg" alt="В Обіймах Темряви: Я Вампір" loading="lazy"></div><small>VAMPIRE ROMANCE · UA</small><h3>В Обіймах Темряви: Я Вампір</h3><p class="edition-note" data-t="trilogyBook">An individual book from the trilogy</p><a href="https://www.amazon.com/dp/B0DFBX4FD6" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
+    <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/author-update/little-killer-uk.webp" alt="Маленький, гарненький вбивця" loading="lazy"></div><small>VAMPIRE ROMANCE · UA</small><h3>Маленький, гарненький вбивця</h3><p class="edition-note" data-t="trilogyBook">An individual book from the trilogy</p><a href="https://www.amazon.com/dp/B0DFCFCTCH" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
+    <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/vampire.jpg" alt="Прозорий світанок" loading="lazy"></div><small>VAMPIRE ROMANCE · UA</small><h3>Прозорий світанок</h3><p class="edition-note" data-t="trilogyBook">An individual book from the trilogy</p><a href="https://www.amazon.com/dp/B0DFC5DHPD" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
+    <article class="book reveal" data-book-lang="en"><div class="cover"><img src="assets/covers/vampire.jpg" alt="I'm a Vampire" loading="lazy"></div><small>VAMPIRE ROMANCE · EN</small><h3>I'm a Vampire</h3><p class="edition-note" data-t="trilogyVolume">The trilogy in one volume</p><span class="muted" data-t="soon">Link coming soon</span></article>
     <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/triumph-twilight.jpg?v=2" alt="Тріумф Сутінок: Битва за Світло" loading="lazy"></div><small>DARK FANTASY · UA</small><h3>Тріумф Сутінок: Битва за Світло</h3><a href="https://www.amazon.com/dp/B0DFM3DBHS" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
     <article class="book reveal" data-book-lang="en"><div class="cover"><img src="assets/covers/summer.jpg" alt="Don’t Run Away, Summer..." loading="lazy"></div><small>ROMANCE · EN</small><h3>Don’t Run Away, Summer...</h3><a href="https://www.amazon.com/dp/B0BV9TWTCJ" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
-    <article class="book reveal" data-book-lang="en"><div class="cover"><img src="assets/covers/gifted-christmas.jpg" alt="Gifted Christmas & Chocolate Wish" loading="lazy"></div><small>CHRISTMAS STORY · EN</small><h3>Gifted Christmas & Chocolate Wish</h3><a href="https://www.amazon.com/dp/B0CNS85YHK" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
+    <article class="book reveal" data-book-lang="en"><div class="cover"><img src="assets/covers/author-update/christmas-en.webp" alt="Gifted Christmas & Chocolate Wish" loading="lazy"></div><small>CHRISTMAS STORY · EN</small><h3>Gifted Christmas & Chocolate Wish</h3><a href="https://www.amazon.com/dp/B0CNS85YHK" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
+    <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/author-update/christmas-uk.webp" alt="Подароване Різдво та Шоколадне Бажання" loading="lazy"></div><small>CHRISTMAS STORY · UA</small><h3>Подароване Різдво та Шоколадне Бажання</h3><a href="https://www.amazon.com/dp/B0G9RGBDL9" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
     <article class="book reveal" data-book-lang="en"><div class="cover"><img src="assets/covers/rainy-princess.jpg" alt="Rainy Princess: A Book about Eternal Summer" loading="lazy"></div><small>FAIRY TALE · EN</small><h3>Rainy Princess: A Book about Eternal Summer</h3><a href="https://www.amazon.com/dp/B0B7NSQ5Q8" target="_blank" rel="noopener" data-t="amazon">View on Amazon ↗</a></article>
     <article class="book reveal" data-book-lang="uk" hidden><div class="cover"><img src="assets/covers/traveling-book.jpg" alt="Книга, яка мандрує сама" loading="lazy"></div><small>NOVEL · UA</small><h3>Книга, яка мандрує сама</h3><span class="muted" data-t="soon">Link coming soon</span></article>
   </div>
@@ -125,7 +146,13 @@ section{padding:clamp(75px,10vw,145px) clamp(18px,5vw,72px)}.ivory{background:va
 
 <section class="ivory" id="about"><div class="about">
   <div class="about-photo reveal"><img src="assets/about.jpg" alt="Victoria Sidney" loading="lazy"></div>
-  <div class="reveal"><p class="kicker" data-t="aboutK">ABOUT THE AUTHOR</p><h2 data-t="authorName">Victoria Sidney</h2><p data-t="a1"></p><p data-t="a2"></p><p data-t="a3"></p><blockquote data-t="quote"></blockquote></div>
+  <div class="reveal"><p class="kicker" data-t="aboutK">ABOUT THE AUTHOR</p><h2 class="author-headline" data-t="authorHeadline">Victoria Sidney — an author with a story of her own and endless worlds.</h2><p data-t="a1"></p><p data-t="a2"></p><p data-t="a3"></p><blockquote data-t="quote"></blockquote><nav class="author-links" aria-label="Victoria Sidney">
+<a href="about-me.html?lang=en" data-author-page="about-me.html"><span class="author-num">01</span><span class="author-title" data-t="authorLink0">About me</span><small class="author-desc" data-t="authorDesc0">Who I am, how I see the world, and what remains in my stories.</small><span class="author-arrow">→</span></a>
+<a href="interview.html?lang=en" data-author-page="interview.html"><span class="author-num">02</span><span class="author-title" data-t="authorLink1">An interview with the author</span><small class="author-desc" data-t="authorDesc1">Honest answers about creativity, choices and inspiration.</small><span class="author-arrow">→</span></a>
+<a href="book-worlds.html?lang=en" data-author-page="book-worlds.html"><span class="author-num">03</span><span class="author-title" data-t="authorLink2">My books as worlds</span><small class="author-desc" data-t="authorDesc2">How my realities are born through feeling, detail and space.</small><span class="author-arrow">→</span></a>
+<a href="author-facts.html?lang=en" data-author-page="author-facts.html"><span class="author-num">04</span><span class="author-title" data-t="authorLink3">A few facts about Victoria Sidney</span><small class="author-desc" data-t="authorDesc3">Stories that do not fit inside a biography.</small><span class="author-arrow">→</span></a>
+<a href="start-reading.html?lang=en" data-author-page="start-reading.html"><span class="author-num">05</span><span class="author-title" data-t="authorLink4">About the books · Where to begin?</span><small class="author-desc" data-t="authorDesc4">Find your first story by mood, feeling or genre.</small><span class="author-arrow">→</span></a>
+</nav></div>
 </div></section>
 
 <section class="dark" id="watch">
@@ -149,7 +176,12 @@ const T={
 en:{ukBooks:"Ukrainian books",enBooks:"English books",openCollection:"Open collection",brand:"VICTORIA SIDNEY",firstName:"VICTORIA",lastName:"SIDNEY",authorName:"Victoria Sidney",books:"Books",worlds:"Worlds",about:"About the Author",watch:"Watch",tag:"ENTER THE STORY",enter:"Enter the worlds",doorK:"A BOOK IS A DOOR",door:"Victoria Sidney’s books are an invitation not simply to read a story, but to step inside and take the leading role.",sel:"CHOOSE YOUR BOOK IN ENGLISH",choose:"Choose your reality.",bookIntro:"A first selection from Victoria Sidney’s catalogue. More titles will be added as the library grows.",amazon:"View on Amazon ↗",soon:"Link coming soon",worldK:"ENTER THE WORLDS",worldTitle:"Open your door.",worldIntro:"Short cinematic fragments from Victoria Sidney’s stories.",w1:"A palace gallery, a vanished painting, and a mystery hidden in 1873.",w2:"A dark comic world where one missed class opens fifteen impossible rooms.",w3:"A distant planet, a white horizon, and a journey that changes everything.",w4:"Machines learn. People adapt. Some bonds outlast both.",w5:"Moonlit streets, old promises, and a love story that refuses to stay buried.",w6:"A city burns beneath the twilight, where the battle for light has already begun.",aboutK:"ABOUT THE AUTHOR",a1:"Victoria creates worlds through the senses: scents, sounds, colors, tastes, nature, music, and the smallest details that linger in memory.",a2:"She does not confine herself to one genre. Science fiction, mysteries, novels, fairy tales, comics and nonfiction each find the form they need.",a3:"Her comics are art objects as much as stories — places where characters, spaces, clothing, light, color and composition all matter.",quote:"“The leading role is already waiting for you.”",watchK:"WATCH & LISTEN",watchT:"Stories beyond the page.",watchI:"Selected trailers and soundtracks already released on Victoria Sidney’s YouTube channel.",yt1:"Vampire world",yt2:"Titanium Heart — prototype comic",yt3:"Don’t Run Away, Summer — soundtrack",yt4:"Planet Skywater — official trailer",youtube:"Visit YouTube ↗",close:"Enter the story."},
 uk:{ukBooks:"Українські книги",enBooks:"Англійські книги",openCollection:"Відкрити колекцію",brand:"ВІКТОРІЯ СІДНЕЙ",firstName:"ВІКТОРІЯ",lastName:"СІДНЕЙ",authorName:"Вікторія Сідней",books:"Книги",worlds:"Світи",about:"Про авторку",watch:"Дивитися",tag:"УВІЙДИ В ІСТОРІЮ",enter:"Увійти у світи",doorK:"КНИГА — ЦЕ ДВЕРІ",door:"Книги Вікторії Сідней — це запрошення не просто прочитати історію, а увійти всередину й зіграти в ній головну роль.",sel:"ОБЕРИ СВОЮ КНИГУ УКРАЇНСЬКОЮ",choose:"Обери реальність.",bookIntro:"Перша добірка з каталогу Вікторії Сідней. Бібліотека на сайті поступово зростатиме.",amazon:"Дивитися на Amazon ↗",soon:"Посилання незабаром",worldK:"УВІЙДИ У СВІТИ",worldTitle:"Відчини свої двері.",worldIntro:"Короткі кінематографічні фрагменти з історій Вікторії Сідней.",w1:"Палацова галерея, зникла картина й таємниця, захована у 1873 році.",w2:"Темний комікс-світ, де одне пропущене заняття відкриває п’ятнадцять неможливих кімнат.",w3:"Далека планета, білий горизонт і подорож, після якої все змінюється.",w4:"Машини вчаться. Люди пристосовуються. Деякі зв’язки переживають і тих, і інших.",w5:"Місячні вулиці, давні обіцянки й історія кохання, яка відмовляється залишатися похованою.",w6:"Місто палає під сутінками — битва за світло вже почалася.",aboutK:"ПРО АВТОРКУ",a1:"Вікторія створює світи через відчуття: запахи, звуки, кольори, смаки, природу, музику й найменші деталі, що залишаються в пам’яті.",a2:"Вона не обмежує себе одним жанром. Наукова фантастика, детективи, романи, казки, комікси й нонфікшн — кожна ідея знаходить власну форму.",a3:"Її комікси — це не лише історії, а й арт-об’єкти, де мають значення персонажі, простір, одяг, світло, колір і композиція.",quote:"«Головна роль уже чекає на тебе.»",watchK:"ДИВИТИСЯ Й СЛУХАТИ",watchT:"Історії поза сторінкою.",watchI:"Добірка трейлерів і саундтреків, які вже вийшли на YouTube-каналі Victoria Sidney.",yt1:"Вампірський світ",yt2:"Titanium Heart — прототип коміксу",yt3:"Не втікай, літо — саундтрек",yt4:"Планета Скайвотер — офіційний трейлер",youtube:"Перейти на YouTube ↗",close:"Увійди в історію."}};
 
-let lang=localStorage.getItem("vs-lang")||"en";
+Object.assign(T.en,{"authorHeadline":"Victoria Sidney — an author with a story of her own and endless worlds.","trilogyVolume":"The trilogy in one volume","trilogyBook":"An individual book from the trilogy","authorLink0":"About me","authorDesc0":"Who I am, how I see the world, and what remains in my stories.","authorLink1":"An interview with the author","authorDesc1":"Honest answers about creativity, choices and inspiration.","authorLink2":"My books as worlds","authorDesc2":"How my realities are born through feeling, detail and space.","authorLink3":"A few facts about Victoria Sidney","authorDesc3":"Stories that do not fit inside a biography.","authorLink4":"About the books · Where to begin?","authorDesc4":"Find your first story by mood, feeling or genre."});
+Object.assign(T.uk,{"authorHeadline":"Вікторія Сідней — авторка з власною історією та нескінченними світами.","trilogyVolume":"Трилогія в одному виданні","trilogyBook":"Окрема книга трилогії","authorLink0":"Про мене","authorDesc0":"Хто я, як бачу світ і що залишаю в історіях.","authorLink1":"Інтерв’ю з письменником","authorDesc1":"Чесні відповіді про творчість, рішення та натхнення.","authorLink2":"Мої книги як світи","authorDesc2":"Як народжуються мої реальності — через відчуття, деталі та простір.","authorLink3":"Цікаві факти про Вікторію Сідней","authorDesc3":"Історії, які не вміщаються в біографії.","authorLink4":"Про книги · З чого почати?","authorDesc4":"Знайдіть свою першу історію за настроєм, відчуттям чи жанром."});
+const requestedLang=new URLSearchParams(location.search).get("lang");
+let savedLang;
+try{savedLang=localStorage.getItem("vs-lang")}catch{}
+let lang=["uk","en"].includes(requestedLang)?requestedLang:["uk","en"].includes(savedLang)?savedLang:"en";
 const b=document.getElementById("lang");
 function setLang(l){
   lang=l;
@@ -160,7 +192,11 @@ function setLang(l){
   b.textContent=l==="en"?"EN":"UA";
   b.title=l==="en"?"Перемкнути на українську":"Switch to English";
   b.setAttribute("aria-label",b.title);
-  localStorage.setItem("vs-lang",l);
+  document.querySelectorAll("[data-author-page]").forEach(a=>{a.href=a.dataset.authorPage+"?lang="+l});
+  const languageUrl=new URL(location.href);
+  languageUrl.searchParams.set("lang",l);
+  history.replaceState(null,"",languageUrl);
+  try{localStorage.setItem("vs-lang",l)}catch{}
 }
 b.onclick=()=>setLang(lang==="en"?"uk":"en");
 setLang(lang);
