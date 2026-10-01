@@ -53,78 +53,57 @@
 
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const layer=document.createElement('div');layer.className='vs-leaves';layer.setAttribute('aria-hidden','true');document.body.appendChild(layer);
-  // Crop the user's transparent sheet in SVG: preserve the original artwork and resolution.
+  // Use the six individual transparent originals from the author, in rotation.
   const leaves=[
-    {box:[344,4,376,310],polygon:'348,82 384,60 407,23 459,59 474,5 518,42 545,12 568,52 627,12 627,68 676,42 661,104 690,133 655,152 705,169 670,199 654,220 682,253 713,289 704,308 660,274 626,240 583,267 549,243 514,272 479,235 435,229 454,196 401,193 424,156 375,153 391,128'},
-    {box:[36,466,294,264],polygon:'44,566 88,545 82,503 119,517 149,481 176,497 207,467 220,509 271,487 265,533 319,521 303,554 329,570 295,601 306,630 261,642 248,679 215,665 183,705 147,676 123,693 101,654 76,636 37,677 38,662 73,627 49,609'},
-    {box:[992,344,302,218],polygon:'999,345 1038,377 1082,387 1121,385 1159,351 1168,391 1201,392 1265,365 1241,411 1288,410 1265,438 1291,450 1256,478 1265,514 1217,518 1196,549 1164,529 1132,560 1107,525 1068,522 1074,491 1026,480 1051,455 1000,430 1021,411'}
-  ];
-  const source='assets/autumn-leaves-original.png';
-  leaves.push(...['red-small','maple-green-yellow','maple-gold-green','oak-brown','maple-red','green-small'].map(name=>({src:'assets/leaves/'+name+'.png',box:[0,0,500,500]})));
-  [source,...leaves.filter(leaf=>leaf.src).map(leaf=>leaf.src)].forEach(src=>{const warm=new Image();warm.src=src;});
-  let timer=null,serial=0;let coolingUntil=0;let active=[];
-  let finalePending=false,finaleDone=false,finaleTimer=null;
+    {name:'maple-green-yellow',scale:1},
+    {name:'oak-brown',scale:.95},
+    {name:'red-small',scale:.62},
+    {name:'maple-red',scale:1},
+    {name:'green-small',scale:.75},
+    {name:'maple-gold-green',scale:1.05}
+  ].map(leaf=>({...leaf,src:'assets/leaves/'+leaf.name+'.png'}));
+  leaves.forEach(leaf=>{const warm=new Image();warm.src=leaf.src;});
   const rand=(min,max)=>min+Math.random()*(max-min);
-  function clearLeaves(){active.forEach(a=>a.cancel());active=[];layer.replaceChildren();}
-  function schedule(delay=rand(21000,34000)){clearTimeout(timer);if(!reduced.matches&&!document.hidden)timer=setTimeout(gust,delay);}
-  function makeLeaf(index,size){
-    const leaf=leaves[index%leaves.length], [x,y,w,h]=leaf.box;
-    const el=document.createElement('span');el.className='vs-leaf';el.style.width=size+'px';el.style.height=(size*h/w)+'px';
-    const id='vs-leaf-'+(++serial);
-    if(leaf.src){
-      const image=document.createElement('img');image.src=leaf.src;image.alt='';image.draggable=false;el.appendChild(image);
-    }else{
-      el.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${x} ${y} ${w} ${h}" aria-hidden="true"><defs><clipPath id="${id}"><polygon points="${leaf.polygon}"/></clipPath></defs><image href="${source}" width="1672" height="941" clip-path="url(#${id})"/></svg>`;
-    }
-    layer.appendChild(el);return el;
+  let timer=null,serial=0,atEnding=false;
+  const active=new Set();
+  function clearLeaves(){for(const animation of active)animation.cancel();active.clear();layer.replaceChildren();}
+  function schedule(delay){
+    clearTimeout(timer);
+    if(!reduced.matches&&!document.hidden)timer=setTimeout(flyLeaf,delay??(atEnding?rand(550,950):rand(1100,1800)));
   }
-  function track(el,frames,options){
-    const anim=el.animate(frames,options);active.push(anim);
-    const done=()=>{el.remove();active=active.filter(a=>a!==anim);};anim.onfinish=done;anim.oncancel=done;
-  }
-  function gust(){
+  function flyLeaf(){
     if(reduced.matches||document.hidden)return;
-    if(document.querySelector('.rabbit-character')||Date.now()<coolingUntil){schedule(5000);return;}
-    if(finalePending){finale();if(finalePending)schedule(5000);return;}
-    const left=Math.random()<.5;const mobile=innerWidth<=720;const count=mobile?3:5;
-    for(let i=0;i<count;i++){
-      const size=mobile?rand(125,180):rand(200,300);
-      const el=makeLeaf(serial,size);
-      const start=left?-size*1.6:innerWidth+size*.6;const end=left?innerWidth+size*1.6:-size*1.6;
-      const sy=rand(innerHeight*.06,innerHeight*.48);const drop=rand(innerHeight*.22,innerHeight*.45);const turn=rand(-80,20);
-      const frames=[0,.22,.5,.78,1].map((t,n)=>({offset:t,opacity:n===0||n===4?0:.94,transform:`translate3d(${start+(end-start)*t}px,${sy+drop*t+Math.sin(t*Math.PI*2)*30}px,0) rotate(${turn+t*(left?180:-180)}deg) rotateY(${Math.sin(t*Math.PI*2)*48}deg)`}));
-      track(el,frames,{duration:rand(6500,8500),delay:i*650,easing:'linear',fill:'both'});
-    }
+    const mobile=innerWidth<=720;
+    const limit=atEnding?(mobile?8:12):(mobile?5:8);
+    if(active.size>=limit){schedule();return;}
+    const index=serial++,leaf=leaves[index%leaves.length];
+    const size=(mobile?rand(135,190):rand(205,285))*leaf.scale;
+    const el=document.createElement('span');el.className='vs-leaf';el.dataset.leaf=leaf.name;
+    el.style.width=size+'px';el.style.height=size+'px';
+    const image=document.createElement('img');image.src=leaf.src;image.alt='';image.draggable=false;el.appendChild(image);layer.appendChild(el);
+    // Each leaf enters separately, at a different height; never a row or a burst.
+    const left=Math.floor(index/9)%2===0;
+    const start=left?-size:innerWidth+size*.2,end=left?innerWidth+size:-size*1.2;
+    const lane=(index*3)%7;
+    const sy=innerHeight*(.02+lane*.095)+rand(-25,25);
+    const drop=rand(innerHeight*.12,innerHeight*.32),turn=rand(-90,40),sway=rand(24,65);
+    const frames=[0,.18,.42,.68,.88,1].map((t,n)=>({offset:t,opacity:n===0||n===5?0:.96,transform:`translate3d(${start+(end-start)*t}px,${sy+drop*t+Math.sin(t*Math.PI*2)*sway}px,0) rotate(${turn+t*(left?180:-180)}deg) rotateY(${Math.sin(t*Math.PI*2)*38}deg)`}));
+    const animation=el.animate(frames,{duration:rand(8500,11500),easing:'linear',fill:'both'});
+    active.add(animation);
+    const done=()=>{el.remove();active.delete(animation);};animation.onfinish=done;animation.oncancel=done;
     schedule();
-  }
-  function finale(){
-    clearTimeout(finaleTimer);
-    if(!finalePending||finaleDone||reduced.matches||document.hidden)return;
-    if(document.querySelector('.rabbit-character')||Date.now()<coolingUntil||active.length){finaleTimer=setTimeout(finale,1500);return;}
-    finalePending=false;finaleDone=true;clearTimeout(timer);
-    const mobile=innerWidth<=720,count=mobile?9:14;
-    layer.dataset.finale='true';
-    for(let i=0;i<count;i++){
-      const size=mobile?rand(85,145):rand(120,210);
-      const el=makeLeaf(serial,size);el.classList.add('vs-leaf-finale');
-      const x=innerWidth*(i+.5)/count-size*.5;
-      const drift=rand(-100,100),turn=rand(-100,100);
-      const frames=[0,.2,.5,.8,1].map((t,n)=>({offset:t,opacity:n===0||n===4?0:.95,transform:`translate3d(${x+drift*t+Math.sin(t*Math.PI*2+i)*35}px,${-size+(innerHeight+size*2)*t}px,0) rotate(${turn+t*220}deg) rotateY(${Math.sin(t*Math.PI*3+i)*45}deg)`}));
-      track(el,frames,{duration:rand(7000,10000),delay:i*150,easing:'linear',fill:'both'});
-    }
-    schedule(33000);
   }
   const ending=document.querySelector('.final-quote')||document.querySelector('footer');
   if(ending){
-    const observer=new IntersectionObserver(entries=>{
-      if(entries.some(entry=>entry.isIntersecting)&&!finaleDone){finalePending=true;finale();observer.disconnect();}
-    },{threshold:.15});observer.observe(ending);
+    new IntersectionObserver(entries=>{
+      const visible=entries.some(entry=>entry.isIntersecting);
+      if(visible!==atEnding){atEnding=visible;layer.dataset.ending=String(visible);schedule(visible?350:1200);}
+    },{threshold:.1}).observe(ending);
   }
-  // Rabbit movement and timing stay unchanged; only leaves yield to its appearance.
-  addEventListener('vs:rabbit-start',()=>{coolingUntil=Date.now()+6500;clearLeaves();});
-  document.addEventListener('visibilitychange',()=>{clearTimeout(timer);clearTimeout(finaleTimer);clearLeaves();if(!document.hidden){if(finalePending)finale();schedule(10000);}});
-  reduced.addEventListener('change',()=>{clearTimeout(timer);clearTimeout(finaleTimer);clearLeaves();if(!reduced.matches){if(finalePending)finale();schedule(10000);}});
-  addEventListener('pagehide',()=>{clearTimeout(timer);clearTimeout(finaleTimer);clearLeaves();});
-  addEventListener('pageshow',e=>{if(e.persisted)schedule(10000);});
-  schedule(19000);
+  // Leaves remain behind the rabbit; its appearance no longer cancels the wind.
+  document.addEventListener('visibilitychange',()=>{clearTimeout(timer);clearLeaves();if(!document.hidden)schedule(800);});
+  reduced.addEventListener('change',()=>{clearTimeout(timer);clearLeaves();if(!reduced.matches)schedule(800);});
+  addEventListener('pagehide',()=>{clearTimeout(timer);clearLeaves();});
+  addEventListener('pageshow',event=>{if(event.persisted)schedule(800);});
+  schedule(900);
 })();
