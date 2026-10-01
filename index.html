@@ -18,7 +18,7 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:#fff;font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit}img,video{display:block;width:100%}
 header{position:fixed;z-index:50;inset:0 0 auto;height:68px;padding:0 clamp(16px,4vw,58px);display:flex;align-items:center;justify-content:space-between;background:linear-gradient(#09090ce8,transparent);transition:.3s}
 header.scrolled{background:#09090ce8;backdrop-filter:blur(13px);border-bottom:1px solid #ffffff12}
-.brand{font-family:var(--serif);letter-spacing:.15em;text-decoration:none;font-size:14px}.brand-cluster{display:block}.social-mini{position:fixed;z-index:140;top:12px;left:26.2vw;display:flex;gap:52px;align-items:center}.social-mini a{width:40px;height:40px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.78);border-radius:999px;background:rgba(7,7,10,.26);color:#fff;transition:.2s;box-shadow:0 0 12px rgba(255,255,255,.08);backdrop-filter:blur(3px)}.social-mini a:hover,.social-mini a:focus-visible{transform:translateY(-1px);border-color:#fff;background:rgba(255,255,255,.12);box-shadow:0 0 18px rgba(255,255,255,.22)}.social-mini svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 2px rgba(255,255,255,.35))}.social-mini svg .fill{fill:#fff;stroke:none}.nav{display:flex;align-items:center;gap:28px}.nav a{text-decoration:none;text-transform:uppercase;font-size:11px;letter-spacing:.16em;color:#ddd}.lang{min-width:52px;border:1px solid #ffffff55;background:#0003;color:#fff;border-radius:99px;padding:9px 11px;cursor:pointer;letter-spacing:.08em}
+.brand{font-family:var(--serif);letter-spacing:.15em;text-decoration:none;font-size:14px}.brand-cluster{display:block}.social-mini{position:fixed;z-index:140;top:12px;left:26.2vw;display:flex;gap:clamp(12px,2vw,28px);align-items:center}.social-mini a{width:40px;height:40px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.78);border-radius:999px;background:rgba(7,7,10,.26);color:#fff;transition:.2s;box-shadow:0 0 12px rgba(255,255,255,.08);backdrop-filter:blur(3px)}.social-mini a:hover,.social-mini a:focus-visible{transform:translateY(-1px);border-color:#fff;background:rgba(255,255,255,.12);box-shadow:0 0 18px rgba(255,255,255,.22)}.social-mini svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 2px rgba(255,255,255,.35))}.social-mini svg .fill{fill:#fff;stroke:none}.nav{display:flex;align-items:center;gap:28px}.nav a{text-decoration:none;text-transform:uppercase;font-size:11px;letter-spacing:.16em;color:#ddd}.lang{min-width:52px;border:1px solid #ffffff55;background:#0003;color:#fff;border-radius:99px;padding:9px 11px;cursor:pointer;letter-spacing:.08em}
 .hero{min-height:100svh;position:relative;background:url("assets/hero.jpg") center/cover no-repeat;overflow:hidden}
 .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.04) 0%,rgba(0,0,0,.06) 43%,rgba(0,0,0,.34) 72%,rgba(0,0,0,.47) 100%),linear-gradient(0deg,rgba(0,0,0,.55),transparent 38%,rgba(0,0,0,.12))}
 .hero-copy{position:absolute;z-index:2;left:50%;right:2.5%;bottom:16%;max-width:none;text-align:center}
@@ -39,7 +39,7 @@ section{padding:clamp(75px,10vw,145px) clamp(18px,5vw,72px)}.ivory{background:va
 .reveal{opacity:0;transform:translateY(16px);transition:.75s}.reveal.show{opacity:1;transform:none}
 @media(max-width:1100px){.hero-copy{left:48%;right:3%}.hero h1{font-size:clamp(62px,7.6vw,105px)}}
 @media(max-width:1000px){.nav a{display:none}.book-grid{grid-template-columns:repeat(3,1fr)}.social-mini{left:31%;gap:24px}.social-mini a{width:36px;height:36px}}
-@media(max-width:720px){header{height:72px}.social-mini{top:38px;left:16px;gap:7px}.social-mini a{width:26px;height:26px}.social-mini svg{width:12px;height:12px}.hero{min-height:92svh;background-position:43% center}.hero:after{background:linear-gradient(0deg,rgba(0,0,0,.76),transparent 58%,rgba(0,0,0,.18))}.hero-copy{left:20px;right:20px;bottom:52px;text-align:center}.hero h1{font-size:clamp(54px,16vw,82px);line-height:.83}.hero .tag{font-size:15px;letter-spacing:.18em}.book-grid{grid-template-columns:repeat(2,1fr);gap:24px 10px}.book h3{font-size:16px}.world-wrap{min-height:72svh}.world-copy{left:20px;right:20px}.world-copy h3{font-size:clamp(38px,12vw,58px)}.about{grid-template-columns:1fr}.about-photo,.about-photo img{min-height:420px}.video-grid{grid-template-columns:1fr}footer{grid-template-columns:1fr}.links{justify-content:flex-start}}
+@media(max-width:720px){header{height:72px}.brand-cluster{align-self:flex-start;margin-top:12px}.social-mini{top:38px;left:16px;gap:7px}.social-mini a{width:26px;height:26px}.social-mini svg{width:12px;height:12px}.hero{min-height:92svh;background-position:43% center}.hero:after{background:linear-gradient(0deg,rgba(0,0,0,.76),transparent 58%,rgba(0,0,0,.18))}.hero-copy{left:20px;right:20px;bottom:52px;text-align:center}.hero h1{font-size:clamp(54px,16vw,82px);line-height:.83}.hero .tag{font-size:15px;letter-spacing:.18em}.book-grid{grid-template-columns:repeat(2,1fr);gap:24px 10px}.book h3{font-size:16px}.world-wrap{min-height:72svh}.world-copy{left:20px;right:20px}.world-copy h3{font-size:clamp(38px,12vw,58px)}.about{grid-template-columns:1fr}.about-photo,.about-photo img{min-height:420px}.video-grid{grid-template-columns:1fr}footer{grid-template-columns:1fr}.links{justify-content:flex-start}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 
 /* Collection shortcuts on the existing hero. */
@@ -90,11 +90,11 @@ section{padding:clamp(75px,10vw,145px) clamp(18px,5vw,72px)}.ivory{background:va
 /* RABBIT PROTOTYPE START — crisp HQ + ding */
 .rabbit-layer{position:fixed;inset:0;z-index:132;pointer-events:none;overflow:hidden}
 .rabbit-character{position:absolute;height:auto;opacity:0;will-change:transform,opacity;transform-origin:center center;backface-visibility:hidden;-webkit-backface-visibility:hidden;image-rendering:auto;filter:drop-shadow(0 8px 12px rgba(0,0,0,.18))}
-.rabbit-top{width:clamp(420px,34vw,620px);left:50%;top:0}
+.rabbit-top{width:clamp(280px,27vw,420px);left:50%;top:0}
 .rabbit-side{width:clamp(330px,27vw,500px);right:0}
-.rabbit-loupe{width:clamp(350px,29vw,520px);left:0}
+.rabbit-loupe{width:clamp(350px,29vw,520px);left:0;bottom:8px}
 @media(max-width:720px){
-  .rabbit-top{width:clamp(300px,74vw,430px)}
+  .rabbit-top{width:clamp(250px,65vw,340px)}
   .rabbit-side{width:clamp(260px,62vw,380px)}
   .rabbit-loupe{width:clamp(280px,66vw,400px)}
 }
@@ -112,6 +112,7 @@ section{padding:clamp(75px,10vw,145px) clamp(18px,5vw,72px)}.ivory{background:va
       <a href="https://www.youtube.com/@writer.victoria.sidney" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12c0 3.2-.2 5.1-.6 5.9-.3.7-.8 1.2-1.5 1.5-.8.4-2.9.6-6.9.6s-6.1-.2-6.9-.6c-.7-.3-1.2-.8-1.5-1.5C3.2 17.1 3 15.2 3 12s.2-5.1.6-5.9c.3-.7.8-1.2 1.5-1.5.8-.4 2.9-.6 6.9-.6s6.1.2 6.9.6c.7.3 1.2.8 1.5 1.5.4.8.6 2.7.6 5.9Z"></path><path d="M10 8.8 16 12l-6 3.2Z" class="fill"></path></svg></a>
       <a href="https://www.facebook.com/victoria.sidney.writer/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.4 20v-6.6h2.3l.4-2.8h-2.7V8.8c0-.8.2-1.4 1.4-1.4h1.5V4.9c-.3 0-1.1-.1-2.1-.1-2.1 0-3.6 1.3-3.6 3.7v2.1H8.3v2.8h2.3V20Z"></path></svg></a>
       <a href="https://www.amazon.com/author/victoriasidney" target="_blank" rel="noopener" aria-label="Amazon Author"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.7 15.7 10.4 8h3.2l2.8 7.7m-6-.9h3.3"></path><path d="M5 18.4c3.3 1.8 7.2 2.3 11.3 1.5 1.2-.2 2.2-.6 3.2-1.1"></path><path d="m17.1 19.1 2.5-.4-.8 2.2"></path></svg></a>
+      <a href="https://www.tiktok.com/@victoria.sidney.writer" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="fill" d="M16 2h-3v13.5a3.5 3.5 0 1 1-3-3.46V9a6.5 6.5 0 1 0 6 6.48V8.1a8.4 8.4 0 0 0 5 1.65v-3A5.25 5.25 0 0 1 16 2Z"></path></svg></a>
     </div>
   </div>
   <nav class="nav"><a href="#books" data-t="books">Books</a><a href="#worlds" data-t="worlds">Worlds</a><a href="#about" data-t="about">About</a><a href="#watch" data-t="watch">Watch</a><button class="lang" id="lang" type="button">EN</button></nav>
@@ -181,7 +182,7 @@ section{padding:clamp(75px,10vw,145px) clamp(18px,5vw,72px)}.ivory{background:va
   <div class="section-head reveal"><p class="kicker" data-t="worldK">ENTER THE WORLDS</p><h2 data-t="worldTitle">Open your door.</h2><p data-t="worldIntro">Short cinematic fragments from Victoria Sidney’s stories.</p></div>
   <div class="world-wrap" id="slider">
     <article class="slide active" data-i="0"><video muted playsinline preload="metadata" poster="assets/covers/unicorn.jpg"><source src="assets/videos/unicorn.mp4" type="video/mp4"></video><div class="world-copy"><p class="kicker">01</p><h3 data-t="worldName1">Лялечка Єдинорога в картинній галереї</h3><p data-t="w1"></p></div></article>
-    <article class="slide" data-i="1"><video muted playsinline preload="metadata" poster="assets/covers/rabbit-robin.jpg"><source src="assets/videos/rabbit-robin.mp4" type="video/mp4"></video><div class="world-copy"><p class="kicker">02</p><h3>Кролик та Робін</h3><p data-t="w2"></p></div></article>
+    <article class="slide" data-i="1"><video muted playsinline preload="metadata" poster="assets/covers/rabbit-robin.jpg"><source src="assets/videos/rabbit-robin.mp4" type="video/mp4"></video><div class="world-copy"><p class="kicker">02</p><h3 data-t="rabbitBannerTitle">Кролик та Робін</h3><p data-t="w2"></p></div></article>
     <article class="slide" data-i="2"><video muted playsinline preload="metadata" poster="assets/covers/skywater.jpg"><source src="assets/videos/skywater.mp4" type="video/mp4"></video><div class="world-copy"><p class="kicker">03</p><h3 data-t="worldName3">Планета Скайвотер</h3><p data-t="w3"></p></div></article>
     <article class="slide" data-i="3"><video muted playsinline preload="metadata" poster="assets/covers/project-frost.jpg"><source src="assets/videos/project-frost.mp4" type="video/mp4"></video><div class="world-copy"><p class="kicker">04</p><h3 data-t="worldName4">Titanium Heart — Project Frost</h3><p data-t="w4"></p></div></article>
     <article class="slide" data-i="4"><video muted playsinline preload="metadata" poster="assets/covers/vampire.jpg"><source src="assets/videos/vampire.mp4" type="video/mp4"></video><div class="world-copy"><p class="kicker">05</p><h3 data-t="worldName5">Я Вампір</h3><p data-t="w5"></p></div></article>
@@ -234,8 +235,8 @@ const T={
 en:{ukBooks:"Ukrainian books",enBooks:"English books",openCollection:"Open collection",brand:"VICTORIA SIDNEY",firstName:"VICTORIA",lastName:"SIDNEY",authorName:"Victoria Sidney",books:"Books",worlds:"Worlds",about:"About the Author",watch:"Watch",tag:"ENTER THE STORY",enter:"Enter the worlds",doorK:"A BOOK IS A DOOR",door:"Victoria Sidney’s books are an invitation not simply to read a story, but to step inside and take the leading role.",sel:"CHOOSE YOUR BOOK IN ENGLISH",choose:"Choose your reality.",bookIntro:"A first selection from Victoria Sidney’s catalogue. More titles will be added as the library grows.",amazon:"View on Amazon ↗",soon:"Link coming soon",worldK:"ENTER THE WORLDS",worldTitle:"Open your door.",worldIntro:"Short cinematic fragments from Victoria Sidney’s stories.",w1:"A palace gallery, a vanished painting, and a mystery hidden in 1873.",w2:"A dark comic world where one missed class opens fifteen impossible rooms.",w3:"A distant planet, a white horizon, and a journey that changes everything.",w4:"Machines learn. People adapt. Some bonds outlast both.",w5:"Moonlit streets, old promises, and a love story that refuses to stay buried.",w6:"A city burns beneath the twilight, where the battle for light has already begun.",aboutK:"ABOUT THE AUTHOR",a1:"Victoria creates worlds through the senses: scents, sounds, colors, tastes, nature, music, and the smallest details that linger in memory.",a2:"She does not confine herself to one genre. Science fiction, mysteries, novels, fairy tales, comics and nonfiction each find the form they need.",a3:"Her comics are art objects as much as stories — places where characters, spaces, clothing, light, color and composition all matter.",quote:"“The leading role is already waiting for you.”",watchK:"WATCH & LISTEN",watchT:"Stories beyond the page.",watchI:"Selected trailers and soundtracks already released on Victoria Sidney’s YouTube channel.",yt1:"Vampire world",yt2:"Titanium Heart — prototype comic",yt3:"Don’t Run Away, Summer — soundtrack",yt4:"Planet Skywater — official trailer",yt5:"Soundtracks for Book Trilogy I'm a Vampire",yt6:"Sci-Fi Short Film | Book Planet Skywater",yt7:"ВІТА — Теракотовий Слон",yt8:"ВІТА — Планета Юпітер",youtube:"Visit YouTube ↗",close:"Enter the story."},
 uk:{ukBooks:"Українські книги",enBooks:"Англійські книги",openCollection:"Відкрити колекцію",brand:"ВІКТОРІЯ СІДНЕЙ",firstName:"ВІКТОРІЯ",lastName:"СІДНЕЙ",authorName:"Вікторія Сідней",books:"Книги",worlds:"Світи",about:"Про авторку",watch:"Дивитися",tag:"УВІЙДИ В ІСТОРІЮ",enter:"Увійти у світи",doorK:"КНИГА — ЦЕ ДВЕРІ",door:"Книги Вікторії Сідней — це запрошення не просто прочитати історію, а увійти всередину й зіграти в ній головну роль.",sel:"ОБЕРИ СВОЮ КНИГУ УКРАЇНСЬКОЮ",choose:"Обери реальність.",bookIntro:"Перша добірка з каталогу Вікторії Сідней. Бібліотека на сайті поступово зростатиме.",amazon:"Дивитися на Amazon ↗",soon:"Посилання незабаром",worldK:"УВІЙДИ У СВІТИ",worldTitle:"Відчини свої двері.",worldIntro:"Короткі кінематографічні фрагменти з історій Вікторії Сідней.",w1:"Палацова галерея, зникла картина й таємниця, захована у 1873 році.",w2:"Темний комікс-світ, де одне пропущене заняття відкриває п’ятнадцять неможливих кімнат.",w3:"Далека планета, білий горизонт і подорож, після якої все змінюється.",w4:"Машини вчаться. Люди пристосовуються. Деякі зв’язки переживають і тих, і інших.",w5:"Місячні вулиці, давні обіцянки й історія кохання, яка відмовляється залишатися похованою.",w6:"Місто палає під сутінками — битва за світло вже почалася.",aboutK:"ПРО АВТОРКУ",a1:"Вікторія створює світи через відчуття: запахи, звуки, кольори, смаки, природу, музику й найменші деталі, що залишаються в пам’яті.",a2:"Вона не обмежує себе одним жанром. Наукова фантастика, детективи, романи, казки, комікси й нонфікшн — кожна ідея знаходить власну форму.",a3:"Її комікси — це не лише історії, а й арт-об’єкти, де мають значення персонажі, простір, одяг, світло, колір і композиція.",quote:"«Головна роль уже чекає на тебе.»",watchK:"ДИВИТИСЯ Й СЛУХАТИ",watchT:"Історії поза сторінкою.",watchI:"Добірка трейлерів і саундтреків, які вже вийшли на YouTube-каналі Victoria Sidney.",yt1:"Вампірський світ",yt2:"Titanium Heart — прототип коміксу",yt3:"Не втікай, літо — саундтрек",yt4:"Планета Скайвотер — офіційний трейлер",yt5:"Soundtracks for Book Trilogy I'm a Vampire",yt6:"Sci-Fi Short Film | Book Planet Skywater",yt7:"ВІТА — Теракотовий Слон",yt8:"ВІТА — Планета Юпітер",youtube:"Перейти на YouTube ↗",close:"Увійди в історію."}};
 
-Object.assign(T.en,{worldName1:"The Unicorn's Chrysalis in the Art Gallery",worldName2:"Rabbit & Robin",worldName3:"Planet Skywater",worldName4:"Titanium Heart — Project Frost",worldName5:"I’m a Vampire",worldName6:"Twilight’s Triumph, Battle for Light"});
-Object.assign(T.uk,{worldName1:"Лялечка Єдинорога в картинній галереї",worldName2:"Кролик та Робін",worldName3:"Планета Скайвотер",worldName4:"Titanium Heart — Проєкт Фрост",worldName5:"Я Вампір",worldName6:"Тріумф Сутінок: Битва за Світло"});
+Object.assign(T.en,{rabbitBannerTitle:"Rabbit and Robin",worldName1:"The Unicorn's Chrysalis in the Art Gallery",worldName2:"Rabbit & Robin",worldName3:"Planet Skywater",worldName4:"Titanium Heart — Project Frost",worldName5:"I’m a Vampire",worldName6:"Twilight’s Triumph, Battle for Light"});
+Object.assign(T.uk,{rabbitBannerTitle:"Кролик та Робін",worldName1:"Лялечка Єдинорога в картинній галереї",worldName2:"Кролик та Робін",worldName3:"Планета Скайвотер",worldName4:"Titanium Heart — Проєкт Фрост",worldName5:"Я Вампір",worldName6:"Тріумф Сутінок: Битва за Світло"});
 Object.assign(T.en,{"authorHeadline":"Victoria Sidney — an author with a story of her own and endless worlds.","trilogyVolume":"The trilogy in one volume","trilogyBook":"An individual book from the trilogy","authorLink0":"About me","authorDesc0":"Who I am, how I see the world, and what remains in my stories.","authorLink1":"An interview with the author","authorDesc1":"Honest answers about creativity, choices and inspiration.","authorLink2":"My books as worlds","authorDesc2":"How my realities are born through feeling, detail and space.","authorLink3":"A few facts about Victoria Sidney","authorDesc3":"Stories that do not fit inside a biography.","authorLink4":"What I think about AI?","authorDesc4":"How I use AI as a tool — and where authorship begins for me.","authorLink5":"About the books · Where to begin?","authorDesc5":"Find your first story by mood, feeling or genre."});
 Object.assign(T.uk,{"authorHeadline":"Вікторія Сідней — авторка з власною історією та нескінченними світами.","trilogyVolume":"Трилогія в одному виданні","trilogyBook":"Окрема книга трилогії","authorLink0":"Про мене","authorDesc0":"Хто я, як бачу світ і що залишаю в історіях.","authorLink1":"Інтерв’ю з письменником","authorDesc1":"Чесні відповіді про творчість, рішення та натхнення.","authorLink2":"Мої книги як світи","authorDesc2":"Як народжуються мої реальності — через відчуття, деталі та простір.","authorLink3":"Цікаві факти про Вікторію Сідней","authorDesc3":"Історії, які не вміщаються в біографії.","authorLink4":"Що я думаю про ШІ?","authorDesc4":"Як я використовую ШІ як інструмент і де для мене починається авторство.","authorLink5":"Про книги · З чого почати?","authorDesc5":"Знайдіть свою першу історію за настроєм, відчуттям чи жанром."});
 const requestedLang=new URLSearchParams(location.search).get("lang");
@@ -488,11 +489,12 @@ document.getElementById("year").textContent=new Date().getFullYear();
 (()=>{
   if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const TOP="assets/rabbit/rabbit-hat.webp";
-  const SIDE="assets/rabbit/rabbit-hat.webp";
-  const LOUPE="assets/rabbit/rabbit-loupe.webp";
+  const TOP="assets/rabbit/rabbit-top-original.png";
+  const SIDE="assets/rabbit/rabbit-standing-original.png";
+  const GREETING="assets/rabbit/rabbit-greeting-original.png";
+  const LOUPE="assets/rabbit/rabbit-loupe-original.png";
 
-  [TOP,SIDE,LOUPE].forEach(src=>{ const im=new Image(); im.src=src; });
+  [TOP,SIDE,GREETING,LOUPE].forEach(src=>{ const im=new Image(); im.src=src; });
 
   const layer=document.createElement("div");
   layer.className="rabbit-layer";
@@ -558,6 +560,8 @@ document.getElementById("year").textContent=new Date().getFullYear();
   async function play(img,frames){
     if(busy || document.hidden) return false;
     busy=true;
+    try { await img.decode(); } catch { busy=false; return false; }
+    if(document.hidden){busy=false;return false;}
     ding();
     layer.appendChild(img);
     await new Promise(resolve=>{
@@ -581,28 +585,28 @@ document.getElementById("year").textContent=new Date().getFullYear();
     img.setAttribute("aria-hidden","true");
     img.className="rabbit-character rabbit-top";
     return play(img,[
-      {offset:0,opacity:0,transform:"translate3d(-50%,-118%,0) rotate(180deg)"},
-      {offset:.16,opacity:1,transform:"translate3d(-50%,-63%,0) rotate(180deg)"},
-      {offset:.34,opacity:1,transform:"translate3d(-50%,-58%,0) rotate(178deg)"},
-      {offset:.58,opacity:1,transform:"translate3d(-50%,-60%,0) rotate(182deg)"},
-      {offset:.76,opacity:1,transform:"translate3d(-50%,-58%,0) rotate(180deg)"},
-      {offset:1,opacity:0,transform:"translate3d(-50%,-120%,0) rotate(180deg)"}
+      {offset:0,opacity:0,transform:"translate3d(-50%,-118%,0)"},
+      {offset:.16,opacity:1,transform:"translate3d(-50%,-12%,0)"},
+      {offset:.34,opacity:1,transform:"translate3d(-50%,-7%,0) rotate(-1deg)"},
+      {offset:.58,opacity:1,transform:"translate3d(-50%,-9%,0) rotate(1deg)"},
+      {offset:.76,opacity:1,transform:"translate3d(-50%,-7%,0)"},
+      {offset:1,opacity:0,transform:"translate3d(-50%,-120%,0)"}
     ]);
   }
 
   async function sidePeek(){
     const img=document.createElement("img");
-    img.src=SIDE;
+    img.src=Math.random()<.5?SIDE:GREETING;
     img.alt="";
     img.setAttribute("aria-hidden","true");
     img.className="rabbit-character rabbit-side";
     img.style.top=Math.round(Math.max(90,Math.min(innerHeight*.52,innerHeight*.31)))+"px";
     return play(img,[
       {offset:0,opacity:0,transform:"translate3d(116%,0,0)"},
-      {offset:.17,opacity:1,transform:"translate3d(48%,0,0)"},
-      {offset:.36,opacity:1,transform:"translate3d(34%,0,0)"},
-      {offset:.60,opacity:1,transform:"translate3d(36%,0,0)"},
-      {offset:.78,opacity:1,transform:"translate3d(42%,0,0)"},
+      {offset:.17,opacity:1,transform:"translate3d(18%,0,0)"},
+      {offset:.36,opacity:1,transform:"translate3d(8%,0,0)"},
+      {offset:.60,opacity:1,transform:"translate3d(10%,0,0)"},
+      {offset:.78,opacity:1,transform:"translate3d(20%,0,0)"},
       {offset:1,opacity:0,transform:"translate3d(118%,0,0)"}
     ]);
   }
@@ -613,13 +617,12 @@ document.getElementById("year").textContent=new Date().getFullYear();
     img.alt="";
     img.setAttribute("aria-hidden","true");
     img.className="rabbit-character rabbit-loupe";
-    img.style.top=Math.round(Math.max(110,Math.min(innerHeight*.58,innerHeight*.39)))+"px";
     return play(img,[
       {offset:0,opacity:0,transform:"translate3d(-116%,12px,0)"},
-      {offset:.17,opacity:1,transform:"translate3d(-44%,0,0)"},
-      {offset:.36,opacity:1,transform:"translate3d(-31%,-3px,0)"},
-      {offset:.60,opacity:1,transform:"translate3d(-29%,2px,0)"},
-      {offset:.78,opacity:1,transform:"translate3d(-36%,0,0)"},
+      {offset:.17,opacity:1,transform:"translate3d(-12%,0,0)"},
+      {offset:.36,opacity:1,transform:"translate3d(-2%,-3px,0)"},
+      {offset:.60,opacity:1,transform:"translate3d(-1%,2px,0)"},
+      {offset:.78,opacity:1,transform:"translate3d(-7%,0,0)"},
       {offset:1,opacity:0,transform:"translate3d(-118%,10px,0)"}
     ]);
   }
