@@ -60,35 +60,71 @@
     {box:[992,344,302,218],polygon:'999,345 1038,377 1082,387 1121,385 1159,351 1168,391 1201,392 1265,365 1241,411 1288,410 1265,438 1291,450 1256,478 1265,514 1217,518 1196,549 1164,529 1132,560 1107,525 1068,522 1074,491 1026,480 1051,455 1000,430 1021,411'}
   ];
   const source='assets/autumn-leaves-original.png';
-  const warm=new Image();warm.src=source;
+  leaves.push(...['red-small','maple-green-yellow','maple-gold-green','oak-brown','maple-red','green-small'].map(name=>({src:'assets/leaves/'+name+'.png',box:[0,0,500,500]})));
+  [source,...leaves.filter(leaf=>leaf.src).map(leaf=>leaf.src)].forEach(src=>{const warm=new Image();warm.src=src;});
   let timer=null,serial=0;let coolingUntil=0;let active=[];
+  let finalePending=false,finaleDone=false,finaleTimer=null;
   const rand=(min,max)=>min+Math.random()*(max-min);
   function clearLeaves(){active.forEach(a=>a.cancel());active=[];layer.replaceChildren();}
   function schedule(delay=rand(21000,34000)){clearTimeout(timer);if(!reduced.matches&&!document.hidden)timer=setTimeout(gust,delay);}
+  function makeLeaf(index,size){
+    const leaf=leaves[index%leaves.length], [x,y,w,h]=leaf.box;
+    const el=document.createElement('span');el.className='vs-leaf';el.style.width=size+'px';el.style.height=(size*h/w)+'px';
+    const id='vs-leaf-'+(++serial);
+    if(leaf.src){
+      const image=document.createElement('img');image.src=leaf.src;image.alt='';image.draggable=false;el.appendChild(image);
+    }else{
+      el.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${x} ${y} ${w} ${h}" aria-hidden="true"><defs><clipPath id="${id}"><polygon points="${leaf.polygon}"/></clipPath></defs><image href="${source}" width="1672" height="941" clip-path="url(#${id})"/></svg>`;
+    }
+    layer.appendChild(el);return el;
+  }
+  function track(el,frames,options){
+    const anim=el.animate(frames,options);active.push(anim);
+    const done=()=>{el.remove();active=active.filter(a=>a!==anim);};anim.onfinish=done;anim.oncancel=done;
+  }
   function gust(){
     if(reduced.matches||document.hidden)return;
     if(document.querySelector('.rabbit-character')||Date.now()<coolingUntil){schedule(5000);return;}
-    const left=Math.random()<.5;const mobile=innerWidth<=720;const count=mobile?2:3;
+    if(finalePending){finale();if(finalePending)schedule(5000);return;}
+    const left=Math.random()<.5;const mobile=innerWidth<=720;const count=mobile?3:5;
     for(let i=0;i<count;i++){
-      const leaf=leaves[(serial+i)%leaves.length], [x,y,w,h]=leaf.box;
       const size=mobile?rand(125,180):rand(200,300);
-      const el=document.createElement('span');el.className='vs-leaf';el.style.width=size+'px';el.style.height=(size*h/w)+'px';
-      const id='vs-leaf-'+(++serial);
-      el.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${x} ${y} ${w} ${h}" aria-hidden="true"><defs><clipPath id="${id}"><polygon points="${leaf.polygon}"/></clipPath></defs><image href="${source}" width="1672" height="941" clip-path="url(#${id})"/></svg>`;
-      layer.appendChild(el);
+      const el=makeLeaf(serial,size);
       const start=left?-size*1.6:innerWidth+size*.6;const end=left?innerWidth+size*1.6:-size*1.6;
       const sy=rand(innerHeight*.06,innerHeight*.48);const drop=rand(innerHeight*.22,innerHeight*.45);const turn=rand(-80,20);
       const frames=[0,.22,.5,.78,1].map((t,n)=>({offset:t,opacity:n===0||n===4?0:.94,transform:`translate3d(${start+(end-start)*t}px,${sy+drop*t+Math.sin(t*Math.PI*2)*30}px,0) rotate(${turn+t*(left?180:-180)}deg) rotateY(${Math.sin(t*Math.PI*2)*48}deg)`}));
-      const anim=el.animate(frames,{duration:rand(6500,8500),delay:i*650,easing:'linear',fill:'both'});active.push(anim);
-      const done=()=>{el.remove();active=active.filter(a=>a!==anim);};anim.onfinish=done;anim.oncancel=done;
+      track(el,frames,{duration:rand(6500,8500),delay:i*650,easing:'linear',fill:'both'});
     }
     schedule();
   }
+  function finale(){
+    clearTimeout(finaleTimer);
+    if(!finalePending||finaleDone||reduced.matches||document.hidden)return;
+    if(document.querySelector('.rabbit-character')||Date.now()<coolingUntil||active.length){finaleTimer=setTimeout(finale,1500);return;}
+    finalePending=false;finaleDone=true;clearTimeout(timer);
+    const mobile=innerWidth<=720,count=mobile?9:14;
+    layer.dataset.finale='true';
+    for(let i=0;i<count;i++){
+      const size=mobile?rand(85,145):rand(120,210);
+      const el=makeLeaf(serial,size);el.classList.add('vs-leaf-finale');
+      const x=innerWidth*(i+.5)/count-size*.5;
+      const drift=rand(-100,100),turn=rand(-100,100);
+      const frames=[0,.2,.5,.8,1].map((t,n)=>({offset:t,opacity:n===0||n===4?0:.95,transform:`translate3d(${x+drift*t+Math.sin(t*Math.PI*2+i)*35}px,${-size+(innerHeight+size*2)*t}px,0) rotate(${turn+t*220}deg) rotateY(${Math.sin(t*Math.PI*3+i)*45}deg)`}));
+      track(el,frames,{duration:rand(7000,10000),delay:i*150,easing:'linear',fill:'both'});
+    }
+    schedule(33000);
+  }
+  const ending=document.querySelector('.final-quote')||document.querySelector('footer');
+  if(ending){
+    const observer=new IntersectionObserver(entries=>{
+      if(entries.some(entry=>entry.isIntersecting)&&!finaleDone){finalePending=true;finale();observer.disconnect();}
+    },{threshold:.15});observer.observe(ending);
+  }
   // Rabbit movement and timing stay unchanged; only leaves yield to its appearance.
   addEventListener('vs:rabbit-start',()=>{coolingUntil=Date.now()+6500;clearLeaves();});
-  document.addEventListener('visibilitychange',()=>{clearTimeout(timer);clearLeaves();if(!document.hidden)schedule(10000);});
-  reduced.addEventListener('change',()=>{clearTimeout(timer);clearLeaves();if(!reduced.matches)schedule(10000);});
-  addEventListener('pagehide',()=>{clearTimeout(timer);clearLeaves();});
+  document.addEventListener('visibilitychange',()=>{clearTimeout(timer);clearTimeout(finaleTimer);clearLeaves();if(!document.hidden){if(finalePending)finale();schedule(10000);}});
+  reduced.addEventListener('change',()=>{clearTimeout(timer);clearTimeout(finaleTimer);clearLeaves();if(!reduced.matches){if(finalePending)finale();schedule(10000);}});
+  addEventListener('pagehide',()=>{clearTimeout(timer);clearTimeout(finaleTimer);clearLeaves();});
   addEventListener('pageshow',e=>{if(e.persisted)schedule(10000);});
   schedule(19000);
 })();
