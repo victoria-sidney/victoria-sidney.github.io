@@ -78,6 +78,14 @@ section{padding:clamp(75px,10vw,145px) clamp(18px,5vw,72px)}.ivory{background:va
 .intro [data-t="doorK"]{color:var(--burg)}
 #about .about-photo{min-height:0;background:transparent}
 #about .about-photo img{min-height:0;height:auto;object-fit:contain}
+
+/* AVI PROTOTYPE START — rollback base 328af93c6dc44c9a96770eb7775bbea4eb563760 */
+.avi-layer{position:fixed;inset:0;z-index:130;pointer-events:none;overflow:hidden}
+.avi-fly{position:absolute;width:clamp(76px,8vw,132px);height:auto;opacity:0;will-change:transform,opacity;filter:drop-shadow(0 8px 18px rgba(0,0,0,.24)) drop-shadow(0 0 8px rgba(255,255,255,.12))}
+@media(max-width:720px){.avi-fly{width:clamp(66px,18vw,104px)}}
+@media(prefers-reduced-motion:reduce){.avi-layer{display:none}}
+/* AVI PROTOTYPE END */
+
 </style>
 </head>
 <body>
