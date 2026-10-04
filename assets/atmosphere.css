@@ -14,6 +14,7 @@
 @media(max-width:720px){.vs-leaves-toggle{right:12px;width:42px;height:42px}}
 
 /* Short visible hint beside the existing leaf control. */
-.vs-leaves-label>span{display:block}
-.vs-leaves-label{position:fixed;top:calc(50% + 27px);right:3px;z-index:159;width:92px;transform:translateY(0);padding:6px 7px;border:1px solid #ffffff55;border-radius:14px;background:#131116ed;color:#f3efe8;font:10px/1.2 Arial,Helvetica,sans-serif;letter-spacing:.01em;text-align:center;white-space:pre-line;box-shadow:0 3px 16px #0003;pointer-events:none}
-@media(max-width:720px){.vs-leaves-label{top:calc(50% + 25px);right:0;width:88px;padding:6px 6px;font-size:9px;line-height:1.2}}
+.vs-leaves-label{appearance:none;-webkit-appearance:none;position:fixed;top:calc(50% + 27px);right:3px;z-index:159;width:80px;transform:translateY(0);padding:6px 4px;border:1px solid #ffffff55;border-radius:14px;background:#131116ed;color:#f3efe8;font:10px/1.2 Arial,Helvetica,sans-serif;letter-spacing:.01em;text-align:center;white-space:normal;box-shadow:0 3px 16px #0003;cursor:pointer}
+.vs-leaves-label:hover{background:#30242b;border-color:#ffffffa8}
+.vs-leaves-label:focus-visible{outline:2px solid #f3efe8;outline-offset:3px}
+@media(max-width:720px){.vs-leaves-label{top:calc(50% + 25px);right:3px;width:76px;padding:6px 3px;font-size:9px;line-height:1.2}}
