@@ -64,7 +64,9 @@
     leavesButton.setAttribute('aria-pressed',String(!leavesEnabled));
     leavesButton.setAttribute('aria-label',label);leavesButton.title=label;
     const lines=uk?(leavesEnabled?['Зупинити','листя']:['Відновити','листопад']):(leavesEnabled?['Pause falling','leaves']:['Resume falling','leaves']);
-    leavesCaption.textContent=lines.join('\\n');
+    leavesCaption.replaceChildren(...lines.map(line=>{
+      const row=document.createElement('span');row.textContent=line;return row;
+    }));
   }
   leavesLabel();document.body.appendChild(leavesCaption);document.body.appendChild(leavesButton);
   new MutationObserver(leavesLabel).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
