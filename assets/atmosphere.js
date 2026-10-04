@@ -62,7 +62,9 @@
     const uk=document.documentElement.lang==='uk';
     const label=leavesEnabled?(uk?'Зупинити листя':'Pause falling leaves'):(uk?'Відновити листопад':'Resume falling leaves');
     leavesButton.setAttribute('aria-pressed',String(!leavesEnabled));
-    leavesButton.setAttribute('aria-label',label);leavesButton.title=label;leavesCaption.textContent=label;
+    leavesButton.setAttribute('aria-label',label);leavesButton.title=label;
+    const lines=uk?(leavesEnabled?['Зупинити','листя']:['Відновити','листопад']):(leavesEnabled?['Pause falling','leaves']:['Resume falling','leaves']);
+    leavesCaption.textContent=lines.join('\\n');
   }
   leavesLabel();document.body.appendChild(leavesCaption);document.body.appendChild(leavesButton);
   new MutationObserver(leavesLabel).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
