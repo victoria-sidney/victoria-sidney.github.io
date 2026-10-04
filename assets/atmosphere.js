@@ -51,6 +51,25 @@
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
   addEventListener('pagehide',stop);
 
+
+  let leavesEnabled=read('vs-leaves')!=='off';
+  const leavesButton=document.createElement('button');
+  leavesButton.className='vs-leaves-toggle';leavesButton.type='button';
+  leavesButton.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5C12 3.5 5.8 6.4 4.1 12.1c-.8 2.7.8 5 3.5 5.5 5.8 1.2 11.4-5 12.9-14.1ZM5 20l8-9"/></svg>';
+  function leavesLabel(){
+    const uk=document.documentElement.lang==='uk';
+    const label=leavesEnabled?(uk?'Зупинити листя':'Pause falling leaves'):(uk?'Відновити листопад':'Resume falling leaves');
+    leavesButton.setAttribute('aria-pressed',String(!leavesEnabled));
+    leavesButton.setAttribute('aria-label',label);leavesButton.title=label;
+  }
+  leavesLabel();document.body.appendChild(leavesButton);
+  new MutationObserver(leavesLabel).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  leavesButton.addEventListener('click',()=>{
+    leavesEnabled=!leavesEnabled;save('vs-leaves',leavesEnabled?'on':'off');leavesLabel();
+    clearTimeout(timer);
+    if(leavesEnabled)schedule(250);else clearLeaves();
+  });
+
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const layer=document.createElement('div');layer.className='vs-leaves';layer.setAttribute('aria-hidden','true');document.body.appendChild(layer);
   // Use the six individual transparent originals from the author, in rotation.
@@ -69,10 +88,10 @@
   function clearLeaves(){for(const animation of active)animation.cancel();active.clear();layer.replaceChildren();}
   function schedule(delay){
     clearTimeout(timer);
-    if(!reduced.matches&&!document.hidden)timer=setTimeout(flyLeaf,delay??(atEnding?rand(550,950):rand(1100,1800)));
+    if(leavesEnabled&&!reduced.matches&&!document.hidden)timer=setTimeout(flyLeaf,delay??(atEnding?rand(550,950):rand(1100,1800)));
   }
   function flyLeaf(){
-    if(reduced.matches||document.hidden)return;
+    if(!leavesEnabled||reduced.matches||document.hidden)return;
     const mobile=innerWidth<=720;
     const limit=atEnding?(mobile?8:12):(mobile?5:8);
     if(active.size>=limit){schedule();return;}
