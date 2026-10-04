@@ -55,14 +55,16 @@
   let leavesEnabled=read('vs-leaves')!=='off';
   const leavesButton=document.createElement('button');
   leavesButton.className='vs-leaves-toggle';leavesButton.type='button';
+  const leavesCaption=document.createElement('span');
+  leavesCaption.className='vs-leaves-label';leavesCaption.setAttribute('aria-hidden','true');
   leavesButton.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5C12 3.5 5.8 6.4 4.1 12.1c-.8 2.7.8 5 3.5 5.5 5.8 1.2 11.4-5 12.9-14.1ZM5 20l8-9"/></svg>';
   function leavesLabel(){
     const uk=document.documentElement.lang==='uk';
     const label=leavesEnabled?(uk?'Зупинити листя':'Pause falling leaves'):(uk?'Відновити листопад':'Resume falling leaves');
     leavesButton.setAttribute('aria-pressed',String(!leavesEnabled));
-    leavesButton.setAttribute('aria-label',label);leavesButton.title=label;
+    leavesButton.setAttribute('aria-label',label);leavesButton.title=label;leavesCaption.textContent=label;
   }
-  leavesLabel();document.body.appendChild(leavesButton);
+  leavesLabel();document.body.appendChild(leavesCaption);document.body.appendChild(leavesButton);
   new MutationObserver(leavesLabel).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
   leavesButton.addEventListener('click',()=>{
     leavesEnabled=!leavesEnabled;save('vs-leaves',leavesEnabled?'on':'off');leavesLabel();
