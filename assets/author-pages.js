@@ -18,7 +18,7 @@
       node.href = node.dataset.page + "?lang=" + lang + (node.dataset.anchor || "");
     });
     document.title = document.body.dataset[lang + "Title"] + " — Victoria Sidney";
-    button.textContent = lang === "uk" ? "UA" : "EN";
+    button.textContent = "УКР / ENG";
     button.setAttribute("aria-label", lang === "uk" ? "Switch to English" : "Перемкнути на українську");
     button.title = button.getAttribute("aria-label");
     const url = new URL(location.href);
