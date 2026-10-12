@@ -3,13 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Victoria Sidney — books, comics and worlds made to be entered, not only read.">
+<meta name="description" id="seo-description" content="Explore Victoria Sidney’s books, comics, and story worlds, including vampire fiction, science fiction, children’s books, and creative titles.">
 <meta name="theme-color" content="#09090c">
 <title>Victoria Sidney | Author 🖤</title>
 <link rel="icon" type="image/png" sizes="64x64" href="/favicon-vs-64.png?v=20261001c">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20261001">
 <link rel="manifest" href="/site.webmanifest?v=20261010-home-title">
 <meta name="apple-mobile-web-app-title" content="Victoria Sidney | Author 🖤">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://victoria-sidney.github.io/#author","name":"Victoria Sidney","url":"https://victoria-sidney.github.io/","jobTitle":"Author"},{"@type":"WebSite","@id":"https://victoria-sidney.github.io/#website","url":"https://victoria-sidney.github.io/","name":"Victoria Sidney | Author","inLanguage":["uk","en"],"author":{"@id":"https://victoria-sidney.github.io/#author"}}]}</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Victoria Sidney">
+<meta property="og:title" content="Victoria Sidney | Author 🖤">
+<meta property="og:description" content="Explore Victoria Sidney’s books, comics, and story worlds.">
+<meta property="og:image" content="https://victoria-sidney.github.io/assets/hero.jpg">
+<meta property="og:image:alt" content="Victoria Sidney author website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Victoria Sidney | Author 🖤">
+<meta name="twitter:description" content="Explore Victoria Sidney’s books, comics, and story worlds.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
@@ -253,6 +264,22 @@ const b=document.getElementById("lang");
 function setLang(l){
   lang=l;
   document.documentElement.lang=l==="uk"?"uk":"en";
+  const seoDescription=l==="uk"?"Книги Вікторії Сідней українською: романи, комікси та історії у різних жанрах. Оберіть книгу й увійдіть у її світ.":"Explore Victoria Sidney’s books, comics, and story worlds, including vampire fiction, science fiction, children’s books, and creative titles.";
+  const seoTitle=l==="uk"?"Вікторія Сідней — книги та комікси":"Victoria Sidney | Author 🖤";
+  document.title=seoTitle;
+  const descriptionTag=document.querySelector('meta[name="description"]'); if(descriptionTag)descriptionTag.content=seoDescription;
+  const currentPath=location.pathname.endsWith("/index.html")?location.pathname.slice(0,-10):location.pathname;
+  const canonicalUrl=location.origin+currentPath+"?lang="+l;
+  const setMeta=(selector,attrs)=>{let el=document.querySelector(selector);if(!el){el=document.createElement("meta");document.head.appendChild(el)}Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,v))};
+  const setLink=(selector,attrs)=>{let el=document.querySelector(selector);if(!el){el=document.createElement("link");document.head.appendChild(el)}Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,v))};
+  setLink('link[data-seo="canonical"]',{rel:"canonical",href:canonicalUrl,"data-seo":"canonical"});
+  for(const language of ["uk","en"])setLink('link[data-seo="alternate"][hreflang="'+language+'"]',{rel:"alternate",hreflang:language,href:location.origin+currentPath+"?lang="+language,"data-seo":"alternate"});
+  setMeta('meta[property="og:title"]',{property:"og:title",content:seoTitle});
+  setMeta('meta[property="og:description"]',{property:"og:description",content:seoDescription});
+  setMeta('meta[property="og:url"]',{property:"og:url",content:canonicalUrl});
+  setMeta('meta[property="og:locale"]',{property:"og:locale",content:l==="uk"?"uk_UA":"en_US"});
+  setMeta('meta[name="twitter:title"]',{name:"twitter:title",content:seoTitle});
+  setMeta('meta[name="twitter:description"]',{name:"twitter:description",content:seoDescription});
   document.querySelectorAll("[data-t]").forEach(e=>{const k=e.dataset.t;if(T[l][k])e.textContent=T[l][k]});
   document.querySelectorAll("[data-book-lang]").forEach(e=>{e.hidden=e.dataset.bookLang!==l});
   document.querySelectorAll("[data-collection-lang]").forEach(e=>e.setAttribute("aria-pressed",String(e.dataset.collectionLang===l)));
