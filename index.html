@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="canonical" data-seo="canonical" href="https://victoria-sidney.github.io/en/">
+<link rel="alternate" data-seo="alternate" hreflang="uk" href="https://victoria-sidney.github.io/uk/">
+<link rel="alternate" data-seo="alternate" hreflang="en" href="https://victoria-sidney.github.io/en/">
 <meta name="description" id="seo-description" content="Explore Victoria Sidney’s books, comics, and story worlds, including vampire fiction, science fiction, children’s books, and creative titles.">
 <meta name="theme-color" content="#09090c">
 <title>Victoria Sidney | Author 🖤</title>
@@ -268,12 +271,12 @@ function setLang(l){
   const seoTitle=l==="uk"?"Вікторія Сідней — книги та комікси":"Victoria Sidney | Author 🖤";
   document.title=seoTitle;
   const descriptionTag=document.querySelector('meta[name="description"]'); if(descriptionTag)descriptionTag.content=seoDescription;
-  const currentPath=location.pathname.endsWith("/index.html")?location.pathname.slice(0,-10):location.pathname;
-  const canonicalUrl=location.origin+currentPath+"?lang="+l;
+  const routePath=location.pathname.replace(/^\/(uk|en)(?=\/)/,"").replace(/index\.html$/,"");
+  const canonicalUrl=location.origin+"/"+l+(routePath.startsWith("/")?routePath:"/"+routePath);
   const setMeta=(selector,attrs)=>{let el=document.querySelector(selector);if(!el){el=document.createElement("meta");document.head.appendChild(el)}Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,v))};
   const setLink=(selector,attrs)=>{let el=document.querySelector(selector);if(!el){el=document.createElement("link");document.head.appendChild(el)}Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,v))};
   setLink('link[data-seo="canonical"]',{rel:"canonical",href:canonicalUrl,"data-seo":"canonical"});
-  for(const language of ["uk","en"])setLink('link[data-seo="alternate"][hreflang="'+language+'"]',{rel:"alternate",hreflang:language,href:location.origin+currentPath+"?lang="+language,"data-seo":"alternate"});
+  for(const language of ["uk","en"])setLink('link[data-seo="alternate"][hreflang="'+language+'"]',{rel:"alternate",hreflang:language,href:location.origin+"/"+language+(routePath.startsWith("/")?routePath:"/"+routePath),"data-seo":"alternate"});
   setMeta('meta[property="og:title"]',{property:"og:title",content:seoTitle});
   setMeta('meta[property="og:description"]',{property:"og:description",content:seoDescription});
   setMeta('meta[property="og:url"]',{property:"og:url",content:canonicalUrl});
@@ -286,19 +289,14 @@ function setLang(l){
   b.textContent="УКР / ENG";
   b.title=l==="en"?"Перемкнути на українську":"Switch to English";
   b.setAttribute("aria-label",b.title);
-  document.querySelectorAll("[data-author-page]").forEach(a=>{a.href=a.dataset.authorPage+"?lang="+l});
-  const languageUrl=new URL(location.href);
-  languageUrl.searchParams.set("lang",l);
-  history.replaceState(null,"",languageUrl);
+  document.querySelectorAll("[data-author-page]").forEach(a=>{const p=a.dataset.authorPage;a.href="/"+l+"/"+(p==="index.html"?"":p.replace(/^\//,""))});
+  if(!location.pathname.match(/^\/(uk|en)(?:\/|$)/)){const languageUrl=new URL(location.href);languageUrl.searchParams.set("lang",l);history.replaceState(null,"",languageUrl);}
   try{localStorage.setItem("vs-lang",l)}catch{}
 }
-b.onclick=()=>setLang(lang==="en"?"uk":"en");
+b.onclick=()=>{const next=lang==="en"?"uk":"en";location.href="/"+next+"/"};
 setLang(lang);
 document.querySelectorAll("[data-collection-lang]").forEach(button=>{
-  button.addEventListener("click",()=>{
-    setLang(button.dataset.collectionLang);
-    document.getElementById("books").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth",block:"start"});
-  });
+  button.addEventListener("click",()=>{location.href="/"+button.dataset.collectionLang+"/#books";});
 });
 
 const head=document.getElementById("head");
