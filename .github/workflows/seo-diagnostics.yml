@@ -1,0 +1,40 @@
+name: Public SEO diagnostics
+on:
+  push:
+    branches: [seo-audit-20261013]
+    paths: ['.github/workflows/seo-diagnostics.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Inspect published website and sitemap
+        shell: python
+        run: |
+          import urllib.request, urllib.error, xml.etree.ElementTree as ET, json, socket
+          base = "https://victoria-sidney.github.io"
+          print("DNS", socket.getaddrinfo("victoria-sidney.github.io", 443))
+          def fetch(path, ua="Mozilla/5.0 (compatible; WebsiteSEOCheck/1.0)"):
+              url = base + path
+              try:
+                  req=urllib.request.Request(url, headers={"User-Agent":ua})
+                  with urllib.request.urlopen(req, timeout=25) as r:
+                      body=r.read()
+                      print(json.dumps({"url":url,"final_url":r.url,"status":r.status,"headers":dict(r.headers),"bytes":len(body)}))
+                      if path in ["/robots.txt","/sitemap.xml","/sitemap.txt"]: print(body.decode()[:6000])
+                      return body
+              except Exception as e:
+                  print("FETCH_ERROR", url, repr(e))
+                  return None
+          for path in ["/", "/robots.txt", "/sitemap.txt", "/google6da4fecb83900afb.html"]:
+              fetch(path)
+          raw=fetch("/sitemap.xml")
+          if raw:
+              root=ET.fromstring(raw)
+              urls=[n.text for n in root.findall("{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]
+              print("SITEMAP_VALID_XML", len(urls))
+              for url in urls: fetch(url[len(base):])
+          fetch("/sitemap.xml", "Googlebot")
