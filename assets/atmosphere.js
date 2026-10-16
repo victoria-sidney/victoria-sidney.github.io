@@ -7,9 +7,9 @@
   let pendingCollection=read('vs-collection-sound')==='yes';
   save('vs-collection-sound','no');
   const tracks={
-    entry:new Audio('assets/audio/world-entry.mp3'),
-    ding:new Audio('assets/audio/rabbit-ding.mp3'),
-    touch:new Audio('assets/audio/collection-touch.mp3')
+    entry:new Audio('/assets/audio/world-entry.mp3'),
+    ding:new Audio('/assets/audio/rabbit-ding.mp3'),
+    touch:new Audio('/assets/audio/collection-touch.mp3')
   };
   for(const [name,track] of Object.entries(tracks)){
     track.preload='none';track.loop=false;track.volume=name==='ding'?.65:name==='entry'?.4:.35;
@@ -89,7 +89,7 @@
     {name:'maple-red',scale:1},
     {name:'green-small',scale:.75},
     {name:'maple-gold-green',scale:1.05}
-  ].map(leaf=>({...leaf,src:'assets/leaves/'+leaf.name+'.png'}));
+  ].map(leaf=>({...leaf,src:'/assets/leaves/'+leaf.name+'.png'}));
   leaves.forEach(leaf=>{const warm=new Image();warm.src=leaf.src;});
   const rand=(min,max)=>min+Math.random()*(max-min);
   let timer=null,serial=0,atEnding=false;
