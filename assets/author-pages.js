@@ -20,7 +20,7 @@
       const page = node.dataset.page;
       node.href = "/" + lang + "/" + (page === "index.html" ? "" : page.replace(/^\//, "")) + (node.dataset.anchor || "");
     });
-    const seoTitle = document.body.dataset[lang + "Title"] + " — Victoria Sidney";
+    const seoTitle = document.body.dataset[lang + "SeoTitle"] || document.body.dataset[lang + "Title"] + " — Victoria Sidney";
     document.title = seoTitle;
     const seoDescription = document.body.dataset[lang + "Description"] || document.querySelector('meta[name="description"]')?.content || "";
     const canonicalUrl = location.origin + routeFor(lang);
